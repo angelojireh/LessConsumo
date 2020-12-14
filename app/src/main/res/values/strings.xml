@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Less Consumo</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_now">Login Now</string>
+    <string name="or_sign_in">or Sign In with</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+
+    <string name="receive_updates">I want to receive updates about products and promotions.</string>
+    <string name="have_account">Already have an account?</string>
+
+    <string name="sale">Sale</string>
+    <string name="men">Men</string>
+    <string name="women">Women</string>
+    <string name="child">Child\'s Apparel</string>
+
+    <string name="tops">Tops</string>
+    <string name="bottoms">Bottoms</string>
+    <string name="dresses">Dresses</string>
+    <string name="bags">Bags</string>
+    <string name="shoes">Shoes</string>
+    <string name="menTops">Men Tops</string>
+    <string name="menBottoms">Men Bottoms</string>
+    <string name="boys">Boys</string>
+    <string name="girls">Girls</string>
+    <string name="viewAll">View All</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_account">My Account</string>
+    <string name="menu_notification">Notification</string>
+    <string name="menu_shipping">Shipping \u0026\nPayments</string>
+    <string name="menu_wallet">Pan-Consumo\nWallet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
