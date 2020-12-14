@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.NewProductsAdapter
@@ -37,11 +38,32 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        // setup
-        var buttonTops = findViewById<LinearLayout>(R.id.buttonTops)
-
         buttonTops.setOnClickListener {
-            gotoNewActivity(ProductActivity())
+            gotoNewActivity(TopsActivity())
+        }
+        buttonBottoms.setOnClickListener {
+            gotoNewActivity(BottomsActivity())
+        }
+        buttonDresses.setOnClickListener {
+            gotoNewActivity(DressesActivity())
+        }
+        buttonBags.setOnClickListener {
+            gotoNewActivity(BagsActivity())
+        }
+        buttonShoes.setOnClickListener {
+            gotoNewActivity(ShoesActivity())
+        }
+        buttonMentops.setOnClickListener {
+            gotoNewActivity(MenTopsActivity())
+        }
+        buttonMenbottoms.setOnClickListener {
+            gotoNewActivity(MenBottomsActivity())
+        }
+        buttonBoys.setOnClickListener {
+            gotoNewActivity(BoysActivity())
+        }
+        buttonGirls.setOnClickListener {
+            gotoNewActivity(GirlsActivity())
         }
     }
 
@@ -92,7 +114,9 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initSaleProductsAdapter() {
         mSaleProductsAdapter = SaleProductsAdapter()
-        recyclerView_saleProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        // recyclerView_saleProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        // recyclerView_saleProducts.adapter = mSaleProductsAdapter
+        recyclerView_saleProducts.layoutManager = GridLayoutManager(this, 2)
         recyclerView_saleProducts.adapter = mSaleProductsAdapter
     }
 
