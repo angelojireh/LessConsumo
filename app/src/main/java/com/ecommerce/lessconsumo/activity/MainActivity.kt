@@ -14,10 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         // color of status bar
         val commonStatusBarColorObj = CommonStatusBarColor()
-        commonStatusBarColorObj.StatusBarColor(this,"#F00674");
+        commonStatusBarColorObj.statusBarColor(this,"#F00674")
 
         // setup
-        var lc_logo = findViewById<ImageView>(R.id.lc_logo)
+        val lc_logo = findViewById<ImageView>(R.id.lc_logo)
 
         // 3 seconds -> go to HomeActivity
         lc_logo.alpha = 0f
