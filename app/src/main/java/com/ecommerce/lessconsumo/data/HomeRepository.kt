@@ -124,4 +124,220 @@ class HomeRepository {
         })
         return data
     }
+
+    fun fetchBottoms(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchBottoms()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchBoys(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchBoys()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchDresses(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchDresses()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchGirls(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchGirls()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchMenBottoms(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchMenBottoms()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchMenTops(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchMenTops()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchShoes(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchShoes()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchTops(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchTops()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
 }

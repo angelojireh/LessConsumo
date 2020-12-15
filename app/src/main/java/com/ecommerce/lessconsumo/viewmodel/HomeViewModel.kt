@@ -38,4 +38,44 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
     {
         getModelListLiveData = homeRepository?.fetchBags()
     }
+
+    fun fetchBottoms()
+    {
+        getModelListLiveData = homeRepository?.fetchBottoms()
+    }
+
+    fun fetchBoys()
+    {
+        getModelListLiveData = homeRepository?.fetchBoys()
+    }
+
+    fun fetchDresses()
+    {
+        getModelListLiveData = homeRepository?.fetchDresses()
+    }
+
+    fun fetchGirls()
+    {
+        getModelListLiveData = homeRepository?.fetchGirls()
+    }
+
+    fun fetchMenBottoms()
+    {
+        getModelListLiveData = homeRepository?.fetchMenBottoms()
+    }
+
+    fun fetchMenTops()
+    {
+        getModelListLiveData = homeRepository?.fetchMenTops()
+    }
+
+    fun fetchShoes()
+    {
+        getModelListLiveData = homeRepository?.fetchShoes()
+    }
+
+    fun fetchTops()
+    {
+        getModelListLiveData = homeRepository?.fetchTops()
+    }
 }

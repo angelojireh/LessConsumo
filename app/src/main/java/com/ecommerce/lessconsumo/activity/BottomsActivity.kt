@@ -1,29 +1,41 @@
 package com.ecommerce.lessconsumo.activity
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.BottomsAdapter
-import com.ecommerce.lessconsumo.adapters.TopsAdapter
+import com.example.lesscon.home.data.GetModel
+import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_bottoms.*
-import kotlinx.android.synthetic.main.activity_tops.*
 
-class BottomsActivity : AppCompatActivity() {
+class BottomsActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var mHomeViewModel: HomeViewModel
+    private lateinit var mBottomsAdapter: BottomsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottoms)
 
-        onClicks()
-        setupBottomsProducts()
-
+        initButtonListeners()
+        initAdapter()
+        loadBottoms()
     }
 
-    private fun onClicks() {
-        buttonBackBottoms.setOnClickListener {
-            finishMe()
+    override fun onClick(p0: View?) {
+        when(p0?.id)
+        {
+            R.id.buttonBackBottoms -> finishMe()
         }
+    }
+
+    private fun initButtonListeners() {
+        buttonBackBottoms.setOnClickListener(this)
     }
 
     private fun finishMe()
@@ -31,15 +43,32 @@ class BottomsActivity : AppCompatActivity() {
         this.finish()
     }
 
-    @SuppressLint("WrongConstant")
-    private fun setupBottomsProducts() {
-        val bottoms: ArrayList<String> = ArrayList()
+    private fun showToast(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    }
 
-        for (i in 1..30) {
-            bottoms.add("Php $i")
-        }
+    private fun loadBottoms()
+    {
+        mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        mHomeViewModel.fetchBottoms()
+        mHomeViewModel.getModelListLiveData?.observe(this, Observer {
+            if (it != null)
+            {
+                recyclerView_bottoms.visibility =  View.VISIBLE
+                mBottomsAdapter.setData(it as ArrayList<GetModel>)
+            }
+            else
+            {
+                showToast("Something went wrong \nit value: $it")
+            }
+            progressbar.visibility = View.GONE
+        })
+    }
 
+    private fun initAdapter()
+    {
+        mBottomsAdapter = BottomsAdapter()
         recyclerView_bottoms.layoutManager = GridLayoutManager(this, 2)
-        recyclerView_bottoms.adapter = BottomsAdapter(bottoms)
+        recyclerView_bottoms.adapter = mBottomsAdapter
     }
 }
