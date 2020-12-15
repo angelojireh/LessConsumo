@@ -40,11 +40,11 @@ class NewProductsAdapter: RecyclerView.Adapter<NewProductsAdapter.NewProductsVie
         fun bindView(item: GetModel?)
         {
             val mNumberFormat: NumberFormat = NumberFormat.getCurrencyInstance()
-            mNumberFormat.maximumFractionDigits = 2;
-            mNumberFormat.currency = Currency.getInstance("PHP");
+            mNumberFormat.maximumFractionDigits = 2
+            mNumberFormat.currency = Currency.getInstance("PHP")
 
             val no_image = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
-            var price: String?
+            val price: String?
 
             if(item?.price != null && item.price.isNotEmpty())
             {
@@ -58,7 +58,7 @@ class NewProductsAdapter: RecyclerView.Adapter<NewProductsAdapter.NewProductsVie
 
             if(item?.images != null && item.images.isNotEmpty())
             {
-                val image_src = item?.images?.get(0)?.src
+                val image_src = item.images[0].src
                 Picasso.get().load(image_src).into(itemView.iv_image)
             }
             else

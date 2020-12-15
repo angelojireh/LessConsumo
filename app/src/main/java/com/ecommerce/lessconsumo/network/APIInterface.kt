@@ -14,4 +14,7 @@ interface APIInterface
 
     @GET("products?order_by=date&order=desc&per_page=15")
     fun fetchNewProducts(): Call<List<GetModel>>
+
+    @GET("products?categories?search=bag")
+    fun fetchBags(): Call<List<GetModel>>
 }

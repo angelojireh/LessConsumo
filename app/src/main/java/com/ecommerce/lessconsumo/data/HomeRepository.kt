@@ -97,4 +97,31 @@ class HomeRepository {
         })
         return data
     }
+
+    fun fetchBags(): LiveData<List<GetModel>>
+    {
+        val data = MutableLiveData<List<GetModel>>()
+        apiInterface?.fetchBags()?.enqueue(object: Callback<List<GetModel>>
+        {
+            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
 }

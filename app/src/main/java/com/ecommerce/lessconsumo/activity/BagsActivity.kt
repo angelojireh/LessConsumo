@@ -1,29 +1,33 @@
 package com.ecommerce.lessconsumo.activity
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.BagsAdapter
-import com.ecommerce.lessconsumo.adapters.DressesAdapter
 import kotlinx.android.synthetic.main.activity_bags.*
 import kotlinx.android.synthetic.main.activity_dresses.*
 
-class BagsActivity : AppCompatActivity() {
+class BagsActivity : AppCompatActivity(), View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bags)
 
-        onClicks()
-        setupBagsProducts()
+        initButtonListeners()
 
     }
 
-    private fun onClicks() {
-        buttonBackBags.setOnClickListener {
-            finishMe()
+    override fun onClick(p0: View?) {
+        when(p0?.id)
+        {
+            R.id.buttonBackBags -> finishMe()
         }
+    }
+
+    private fun initButtonListeners() {
+        buttonBackBags.setOnClickListener(this)
     }
 
     private fun finishMe()
@@ -31,15 +35,14 @@ class BagsActivity : AppCompatActivity() {
         this.finish()
     }
 
-    @SuppressLint("WrongConstant")
-    private fun setupBagsProducts() {
-        val bags: ArrayList<String> = ArrayList()
-
-        for (i in 1..30) {
-            bags.add("Php $i")
-        }
-
-        recyclerView_bags.layoutManager = GridLayoutManager(this, 2)
-        recyclerView_bags.adapter = BagsAdapter(bags)
+    private fun showToast(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
+
+    private fun loadBags()
+    {}
+
+    private fun initBagsAdapter()
+    {}
+
 }

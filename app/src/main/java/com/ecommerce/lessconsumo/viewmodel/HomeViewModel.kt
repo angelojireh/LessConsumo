@@ -33,4 +33,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
     {
         getModelListLiveData = homeRepository?.fetchNewProducts()
     }
+
+    fun fetchBags()
+    {
+        getModelListLiveData = homeRepository?.fetchBags()
+    }
 }
