@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +18,7 @@ import com.example.lesscon.home.data.GetModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var mSaleProductsAdapter: SaleProductsAdapter
@@ -29,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        onClicks()
+        initButtonListeners()
         initNewProductsAdapter()
         loadNewArrivals()
         initSaleProductsAdapter()
@@ -37,34 +36,31 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun onClicks() {
-        buttonTops.setOnClickListener {
-            gotoNewActivity(TopsActivity())
+    override fun onClick(v: View?) {
+        when(v?.id)
+        {
+            R.id.buttonTops -> gotoNewActivity(TopsActivity())
+            R.id.buttonBottoms -> gotoNewActivity(BottomsActivity())
+            R.id.buttonDresses -> gotoNewActivity(DressesActivity())
+            R.id.buttonBags -> gotoNewActivity(BagsActivity())
+            R.id.buttonShoes -> gotoNewActivity(ShoesActivity())
+            R.id.buttonMentops -> gotoNewActivity(MenTopsActivity())
+            R.id.buttonMenbottoms -> gotoNewActivity(MenBottomsActivity())
+            R.id.buttonBoys -> gotoNewActivity(BoysActivity())
+            R.id.buttonGirls -> gotoNewActivity(GirlsActivity())
         }
-        buttonBottoms.setOnClickListener {
-            gotoNewActivity(BottomsActivity())
-        }
-        buttonDresses.setOnClickListener {
-            gotoNewActivity(DressesActivity())
-        }
-        buttonBags.setOnClickListener {
-            gotoNewActivity(BagsActivity())
-        }
-        buttonShoes.setOnClickListener {
-            gotoNewActivity(ShoesActivity())
-        }
-        buttonMentops.setOnClickListener {
-            gotoNewActivity(MenTopsActivity())
-        }
-        buttonMenbottoms.setOnClickListener {
-            gotoNewActivity(MenBottomsActivity())
-        }
-        buttonBoys.setOnClickListener {
-            gotoNewActivity(BoysActivity())
-        }
-        buttonGirls.setOnClickListener {
-            gotoNewActivity(GirlsActivity())
-        }
+    }
+
+    private fun initButtonListeners() {
+        buttonTops.setOnClickListener(this)
+        buttonBottoms.setOnClickListener(this)
+        buttonDresses.setOnClickListener(this)
+        buttonBags.setOnClickListener(this)
+        buttonShoes.setOnClickListener(this)
+        buttonMentops.setOnClickListener(this)
+        buttonMenbottoms.setOnClickListener(this)
+        buttonBoys.setOnClickListener(this)
+        buttonGirls.setOnClickListener(this)
     }
 
     private fun gotoNewActivity(activity : Activity) {
