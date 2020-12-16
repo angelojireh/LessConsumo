@@ -34,6 +34,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         initSaleProductsAdapter()
         loadSaleProducts()
 
+        // added
+        buttonCart.setOnClickListener {
+            gotoNewActivity(CartActivity())
+        }
+
     }
 
     override fun onClick(v: View?) {
