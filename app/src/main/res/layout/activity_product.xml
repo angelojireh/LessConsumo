@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <Button
-                    android:id="@+id/buttonBack"
+                    android:id="@+id/buttonBackProduct"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_alignParentLeft="true"
@@ -242,6 +242,7 @@
             android:background="@color/colorGray" />
 
         <Button
+            android:id="@+id/buttonAddToBag"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"

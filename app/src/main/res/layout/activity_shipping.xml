@@ -102,7 +102,7 @@
                     android:background="@drawable/background_edittext"
                     android:gravity="start"
                     android:padding="8dp"
-                    android:text="Address"
+                    android:hint="Complete delivery address"
                     android:lineSpacingExtra="1dp"
                     android:textColor="@color/colorBlack"
                     android:textSize="13sp" />
