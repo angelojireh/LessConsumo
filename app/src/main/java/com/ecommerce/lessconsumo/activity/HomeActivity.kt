@@ -68,6 +68,20 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         buttonGirls.setOnClickListener(this)
     }
 
+    private fun initSaleProductsAdapter() {
+        mSaleProductsAdapter = SaleProductsAdapter(this)
+        // recyclerView_saleProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        // recyclerView_saleProducts.adapter = mSaleProductsAdapter
+        recyclerView_saleProducts.layoutManager = GridLayoutManager(this, 2)
+        recyclerView_saleProducts.adapter = mSaleProductsAdapter
+    }
+
+    private fun initNewProductsAdapter() {
+        mNewProductsAdapter = NewProductsAdapter()
+        recyclerView_newArrivals.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_newArrivals.adapter = mNewProductsAdapter
+    }
+
     private fun gotoNewActivity(activity : Activity) {
         val intent = Intent (this, activity::class.java)
         startActivity(intent)
@@ -111,19 +125,5 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
             }
             progress_saleProducts.visibility = View.GONE
         })
-    }
-
-    private fun initSaleProductsAdapter() {
-        mSaleProductsAdapter = SaleProductsAdapter()
-        // recyclerView_saleProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        // recyclerView_saleProducts.adapter = mSaleProductsAdapter
-        recyclerView_saleProducts.layoutManager = GridLayoutManager(this, 2)
-        recyclerView_saleProducts.adapter = mSaleProductsAdapter
-    }
-
-    private fun initNewProductsAdapter() {
-        mNewProductsAdapter = NewProductsAdapter()
-        recyclerView_newArrivals.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_newArrivals.adapter = mNewProductsAdapter
     }
 }
