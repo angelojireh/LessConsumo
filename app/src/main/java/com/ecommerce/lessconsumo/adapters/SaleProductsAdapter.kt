@@ -3,6 +3,7 @@ package com.ecommerce.lessconsumo.adapters
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -63,17 +64,24 @@ class SaleProductsAdapter(val context: Activity): RecyclerView.Adapter<SaleProdu
             mNumberFormat.currency = Currency.getInstance("PHP")
 
             val no_image = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
-            val price: String?
+            val no_price = "Price unavailable"
+            var regular_price = ""
+            var sale_price = ""
 
-            if(item?.price != null && item.price.isNotEmpty())
+            if(!(item?.regular_price).isNullOrEmpty())
             {
-                price = mNumberFormat.format(item.price.toDouble())
-                itemView.sale_price.text = price
+                regular_price = mNumberFormat.format(item?.regular_price?.toDouble())
+                itemView.regular_price.text = regular_price
+                (itemView.regular_price).paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
-            else
+            else itemView.regular_price.visibility = View.GONE
+
+            if(!(item?.sale_price).isNullOrEmpty())
             {
-                itemView.sale_price.text =  "N/A"
+                sale_price = mNumberFormat.format(item?.sale_price?.toDouble())
+                itemView.sale_price.text = sale_price
             }
+            else itemView.sale_price.text = no_price
 
             if(item?.images != null && item.images.isNotEmpty())
             {
