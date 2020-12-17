@@ -68,7 +68,7 @@ class DressesActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun initAdapter()
     {
-        mDressesAdapter = DressesAdapter()
+        mDressesAdapter = DressesAdapter(this)
         recyclerView_dresses.layoutManager = GridLayoutManager(this, 2)
         recyclerView_dresses.adapter = mDressesAdapter
     }

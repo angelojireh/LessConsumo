@@ -68,7 +68,7 @@ class TopsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mTopsAdapter = TopsAdapter()
+        mTopsAdapter = TopsAdapter(this)
         recyclerView_tops.layoutManager = GridLayoutManager(this, 2)
         recyclerView_tops.adapter = mTopsAdapter
     }

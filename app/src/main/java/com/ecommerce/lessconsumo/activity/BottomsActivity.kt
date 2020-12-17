@@ -67,7 +67,7 @@ class BottomsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mBottomsAdapter = BottomsAdapter()
+        mBottomsAdapter = BottomsAdapter(this)
         recyclerView_bottoms.layoutManager = GridLayoutManager(this, 2)
         recyclerView_bottoms.adapter = mBottomsAdapter
     }

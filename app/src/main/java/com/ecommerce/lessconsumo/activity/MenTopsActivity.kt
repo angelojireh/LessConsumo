@@ -68,7 +68,7 @@ class MenTopsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mMenTopsAdapter = MenTopsAdapter()
+        mMenTopsAdapter = MenTopsAdapter(this)
         recyclerView_menTops.layoutManager = GridLayoutManager(this, 2)
         recyclerView_menTops.adapter = mMenTopsAdapter
     }

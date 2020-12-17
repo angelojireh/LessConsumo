@@ -1,10 +1,15 @@
 package com.ecommerce.lessconsumo.adapters
 
+import android.app.Activity
+import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
+import com.ecommerce.lessconsumo.activity.ProductActivity
+import com.ecommerce.lessconsumo.data.ProductModel
 import com.example.lesscon.home.data.GetModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_category_recyclerview.view.*
@@ -13,7 +18,7 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GirlsAdapter: RecyclerView.Adapter<GirlsAdapter.GirlsViewHolder>() {
+class GirlsAdapter(val context: Activity): RecyclerView.Adapter<GirlsAdapter.GirlsViewHolder>() {
 
     private var data: ArrayList<GetModel>? = null
     fun setData(list: ArrayList<GetModel>)
@@ -35,8 +40,20 @@ class GirlsAdapter: RecyclerView.Adapter<GirlsAdapter.GirlsViewHolder>() {
         return data?.size ?: 0
     }
 
-    class GirlsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class GirlsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener
     {
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position: Int = bindingAdapterPosition
+            if(position != RecyclerView.NO_POSITION) {
+                val mProductModel = data?.let { ProductModel(context, position, it) }
+                mProductModel?.showProductData()
+            }
+        }
+
         fun bindView(item: GetModel?)
         {
             val mNumberFormat: NumberFormat = NumberFormat.getCurrencyInstance()

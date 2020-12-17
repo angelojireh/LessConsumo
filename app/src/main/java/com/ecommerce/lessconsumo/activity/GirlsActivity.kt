@@ -68,7 +68,7 @@ class GirlsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mGirlsAdapter = GirlsAdapter()
+        mGirlsAdapter = GirlsAdapter(this)
         recyclerView_girls.layoutManager = GridLayoutManager(this, 2)
         recyclerView_girls.adapter = mGirlsAdapter
     }

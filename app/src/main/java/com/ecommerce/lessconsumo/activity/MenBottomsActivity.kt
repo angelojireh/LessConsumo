@@ -68,7 +68,7 @@ class MenBottomsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mMenBottomsAdapter = MenBottomsAdapter()
+        mMenBottomsAdapter = MenBottomsAdapter(this)
         recyclerView_menBottoms.layoutManager = GridLayoutManager(this, 2)
         recyclerView_menBottoms.adapter = mMenBottomsAdapter
     }

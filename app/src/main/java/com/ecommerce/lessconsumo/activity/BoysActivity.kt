@@ -68,7 +68,7 @@ class BoysActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mBoysAdapter = BoysAdapter()
+        mBoysAdapter = BoysAdapter(this)
         recyclerView_boys.layoutManager = GridLayoutManager(this, 2)
         recyclerView_boys.adapter = mBoysAdapter
     }
