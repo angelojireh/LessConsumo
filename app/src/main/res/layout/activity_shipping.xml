@@ -118,10 +118,40 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp" />
 
+                <RadioGroup
+                    android:id="@+id/rg_shipping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/background_edittext"
+                    android:padding="4dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:text="J&amp;T Express Delivery"
+                        android:textSize="13sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/textview_shiprate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:padding="2dp"
+                        android:text="Php 000.00"
+                        android:textSize="13sp"
+                        android:textColor="@color/colorBlack" />
+
+                </RadioGroup>
+
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonContinue"
+                android:id="@+id/buttonContinueToPayment"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_margin="32dp"

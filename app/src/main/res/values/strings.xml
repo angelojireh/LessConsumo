@@ -29,6 +29,10 @@
     <string name="girls">Girls</string>
     <string name="viewAll">View All</string>
 
+    <string name="payment_options">
+        Help us go contactless!\nPay your order online through the following:\n\nBank Transfer Details:\n\n** BDO **\nAccount Name: Juan Dela Cruz\nAccount Number: 123456789012\n\n** BPI **\nAccount Name: Juan Dela Cruz\nAccount Number: 123456789012\n\n** GCash **\nAccount Name: Juan Dela Cruz\nAccount Number: 09101234567\n\nPlease message our Facebook page:\nLess Consumo and send us a copy of your transaction receipt, don\'t forget to include your order number.
+    </string>
+
     <string name="menu_home">Home</string>
     <string name="menu_account">My Account</string>
     <string name="menu_notification">Notification</string>

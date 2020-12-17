@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".activity.ProductActivity">
+    tools:context=".activity.NewProductActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -38,7 +38,7 @@
                     android:src="@drawable/less_consumo_logo" />
 
                 <Button
-                    android:id="@+id/buttonBackProduct"
+                    android:id="@+id/buttonBackNewProduct"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_alignParentLeft="true"
@@ -97,20 +97,11 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tv_regularPrice"
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    android:text="sale"
-                    android:textColor="@color/colorGray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_salePrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="regular"
+                    android:text="price"
                     android:textColor="@color/colorMain"
                     android:textSize="16sp"
                     android:textStyle="bold" />
