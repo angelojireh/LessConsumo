@@ -53,9 +53,11 @@ class HomeRepository {
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
+                val totalPages = response.headers().get("x-wp-totalpages")
                 if(response.code() == 200 && res!=null)
                 {
                     data.value = res
+                    Log.i("onSale_total_pages", totalPages!!)
                 }
                 else
                 {
@@ -80,9 +82,11 @@ class HomeRepository {
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
+                val totalPages = response.headers().get("x-wp-totalpages")
                 if(response.code() == 200 && res!=null)
                 {
                     data.value = res
+                    Log.i("newProducts_total_pages", totalPages!!)
                 }
                 else
                 {

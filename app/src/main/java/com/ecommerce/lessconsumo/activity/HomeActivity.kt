@@ -77,7 +77,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun initNewProductsAdapter() {
-        mNewProductsAdapter = NewProductsAdapter()
+        mNewProductsAdapter = NewProductsAdapter(this)
         recyclerView_newArrivals.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView_newArrivals.adapter = mNewProductsAdapter
     }

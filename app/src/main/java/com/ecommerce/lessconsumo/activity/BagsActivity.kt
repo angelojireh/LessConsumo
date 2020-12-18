@@ -67,7 +67,7 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun initAdapter()
     {
-        mBagsAdapter = BagsAdapter()
+        mBagsAdapter = BagsAdapter(this)
         recyclerView_bags.layoutManager = GridLayoutManager(this, 2)
         recyclerView_bags.adapter = mBagsAdapter
     }

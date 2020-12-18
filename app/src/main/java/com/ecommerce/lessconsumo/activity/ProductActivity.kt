@@ -1,6 +1,7 @@
 package com.ecommerce.lessconsumo.activity
 
 
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -60,13 +61,23 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
         Picasso.get().load(productImage).into(iv_productImage)
         tv_productName.text = productName
-        tv_regularPrice.text = regularPrice
-        tv_salePrice.text = salePrice
         tv_sku.text = sku
         tv_stock.text = stock
         tv_description.text = shortDescription
         tv_size.text = size
         tv_categories.text = categories
+
+        if(regularPrice.isNullOrEmpty()) tv_regularPrice.visibility = View.GONE
+        else {
+            tv_regularPrice.text = regularPrice
+            tv_regularPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+        }
+
+        if((salePrice.isNullOrEmpty())) {
+            tv_regularPrice.visibility = View.GONE
+            tv_salePrice.text = regularPrice
+        } else tv_salePrice.text = salePrice
+
     }
 
     private fun addToBag()

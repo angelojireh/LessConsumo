@@ -68,7 +68,7 @@ class ShoesActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
-        mShoesAdapter = ShoesAdapter()
+        mShoesAdapter = ShoesAdapter(this)
         recyclerView_shoes.layoutManager = GridLayoutManager(this, 2)
         recyclerView_shoes.adapter = mShoesAdapter
     }
