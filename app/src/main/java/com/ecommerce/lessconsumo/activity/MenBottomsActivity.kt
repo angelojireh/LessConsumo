@@ -1,6 +1,5 @@
 package com.ecommerce.lessconsumo.activity
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.MenBottomsAdapter
-import com.example.lesscon.home.data.GetModel
+import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_men_bottoms.*
 
@@ -52,11 +51,11 @@ class MenBottomsActivity : AppCompatActivity(), View.OnClickListener {
     {
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchMenBottoms()
-        mHomeViewModel.getModelListLiveData?.observe(this, Observer {
+        mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_menBottoms.visibility =  View.VISIBLE
-                mMenBottomsAdapter.setData(it as ArrayList<GetModel>)
+                mMenBottomsAdapter.setData(it as ArrayList<ProductModel>)
             }
             else
             {

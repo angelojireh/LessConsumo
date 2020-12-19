@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.NewProductsAdapter
 import com.ecommerce.lessconsumo.adapters.SaleProductsAdapter
-import com.example.lesscon.home.data.GetModel
+import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -93,8 +93,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun initSaleProductsAdapter() {
         mSaleProductsAdapter = SaleProductsAdapter(this)
-        // recyclerView_saleProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        // recyclerView_saleProducts.adapter = mSaleProductsAdapter
         recyclerView_saleProducts.layoutManager = GridLayoutManager(this, 2)
         recyclerView_saleProducts.adapter = mSaleProductsAdapter
     }
@@ -118,11 +116,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         //load new arrivals
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchNewProducts()
-        mHomeViewModel.getModelListLiveData?.observe(this, Observer {
+        mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_newArrivals.visibility =  View.VISIBLE
-                mNewProductsAdapter.setData(it as ArrayList<GetModel>)
+                mNewProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
             else
             {
@@ -136,11 +134,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         // load sale products
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchOnSaleProducts()
-        mHomeViewModel.getModelListLiveData?.observe(this, Observer {
+        mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_saleProducts.visibility =  View.VISIBLE
-                mSaleProductsAdapter.setData(it as ArrayList<GetModel>)
+                mSaleProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
             else
             {

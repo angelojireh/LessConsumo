@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.BagsAdapter
-import com.example.lesscon.home.data.GetModel
+import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_bags.*
 
@@ -51,11 +51,11 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
     {
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchBags()
-        mHomeViewModel.getModelListLiveData?.observe(this, Observer {
+        mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_bags.visibility =  View.VISIBLE
-                mBagsAdapter.setData(it as ArrayList<GetModel>)
+                mBagsAdapter.setData(it as ArrayList<ProductModel>)
             }
             else
             {

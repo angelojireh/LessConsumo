@@ -9,23 +9,37 @@ import android.widget.RadioButton
 import android.widget.Toast
 import com.ecommerce.lessconsumo.R
 import kotlinx.android.synthetic.main.activity_payment.*
+import kotlinx.android.synthetic.main.activity_payment.view.*
 import kotlinx.android.synthetic.main.activity_shipping.*
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        // added
-        buttonComplete.setOnClickListener {
-            var id: Int = rg_payment.checkedRadioButtonId
-            if (id != -1) {
-                // val radio:RadioButton = findViewById(id)
-                Toast.makeText(this, "Your order has been placed", Toast.LENGTH_SHORT).show()
-                gotoNewActivity(HomeActivity())
-            }
-            else {
-                Toast.makeText(this, "Choose payment method.", Toast.LENGTH_SHORT).show()
+        initOnClickListener()
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id)
+        {
+            R.id.buttonComplete ->
+                if(rg_payment.checkedRadioButtonId != -1)
+                {
+                    showToast("Your order has been placed")
+                    gotoNewActivity(HomeActivity())
+                } else showToast("Please select a payment method")
+        }
+    }
+
+    fun onRadioButtonClicked(view: View){
+        if(view is RadioButton)
+        {
+            val isChecked = view.isChecked
+            when(view.id)
+            {
+                R.id.rb_onlinepayment -> if(isChecked) textview_paymentoptions.visibility = View.VISIBLE
+                    else textview_paymentoptions.visibility = View.GONE
             }
         }
         buttonBackPayment.setOnClickListener {
@@ -33,16 +47,13 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
-    fun radio_button_click(view: View){
-        val radio: RadioButton = findViewById(rg_payment.checkedRadioButtonId)
-        val payment_method = radio.text
+    private fun initOnClickListener()
+    {
+        buttonComplete.setOnClickListener(this)
+    }
 
-        if (payment_method == "Online Payment") {
-            textview_paymentoptions.visibility = View.VISIBLE
-        }
-        else {
-            textview_paymentoptions.visibility = View.GONE
-        }
+    private fun showToast(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
     private fun gotoNewActivity(activity : Activity) {

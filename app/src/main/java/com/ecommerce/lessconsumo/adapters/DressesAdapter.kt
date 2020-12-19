@@ -1,16 +1,13 @@
 package com.ecommerce.lessconsumo.adapters
 
 import android.app.Activity
-import android.content.Intent
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
-import com.ecommerce.lessconsumo.activity.ProductActivity
-import com.ecommerce.lessconsumo.data.ProductModel
-import com.example.lesscon.home.data.GetModel
+import com.ecommerce.lessconsumo.customclass.ProductDetails
+import com.example.lesscon.home.data.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_category_recyclerview.view.*
 import kotlinx.android.synthetic.main.layout_category_recyclerview.view.iv_image
@@ -20,8 +17,8 @@ import kotlin.collections.ArrayList
 
 class DressesAdapter(val context: Activity): RecyclerView.Adapter<DressesAdapter.DressesViewHolder>() {
 
-    private var data: ArrayList<GetModel>? = null
-    fun setData(list: ArrayList<GetModel>)
+    private var data: ArrayList<ProductModel>? = null
+    fun setData(list: ArrayList<ProductModel>)
     {
         data = list
         notifyDataSetChanged()
@@ -49,12 +46,12 @@ class DressesAdapter(val context: Activity): RecyclerView.Adapter<DressesAdapter
         override fun onClick(v: View?) {
             val position: Int = bindingAdapterPosition
             if(position != RecyclerView.NO_POSITION) {
-                val mProductModel = data?.let { ProductModel(context, position, it) }
-                mProductModel?.showProductData()
+                val mProductDetails = data?.let { ProductDetails(context, position, it) }
+                mProductDetails?.showProductData()
             }
         }
 
-        fun bindView(item: GetModel?)
+        fun bindView(item: ProductModel?)
         {
             val mNumberFormat: NumberFormat = NumberFormat.getCurrencyInstance()
             mNumberFormat.maximumFractionDigits = 2

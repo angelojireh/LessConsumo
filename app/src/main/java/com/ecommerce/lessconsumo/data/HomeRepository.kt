@@ -17,12 +17,12 @@ class HomeRepository {
         apiInterface = APIClient.getApiClient().create(APIInterface::class.java)
     }
 
-    fun fetchAllProducts(): LiveData<List<GetModel>>
+    fun fetchAllProducts(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchAllProducts()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchAllProducts()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -36,7 +36,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -44,12 +44,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchOnSaleProducts(): LiveData<List<GetModel>>
+    fun fetchOnSaleProducts(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchOnSaleProducts()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchOnSaleProducts()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -65,7 +65,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -73,12 +73,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchNewProducts(): LiveData<List<GetModel>>
+    fun fetchNewProducts(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchNewProducts()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchNewProducts()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -94,7 +94,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -102,12 +102,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchBags(): LiveData<List<GetModel>>
+    fun fetchBags(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchBags()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchBags()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -121,7 +121,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -129,12 +129,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchBottoms(): LiveData<List<GetModel>>
+    fun fetchBottoms(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchBottoms()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchBottoms()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -148,7 +148,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -156,12 +156,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchBoys(): LiveData<List<GetModel>>
+    fun fetchBoys(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchBoys()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchBoys()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -175,7 +175,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -183,12 +183,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchDresses(): LiveData<List<GetModel>>
+    fun fetchDresses(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchDresses()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchDresses()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -202,7 +202,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -210,12 +210,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchGirls(): LiveData<List<GetModel>>
+    fun fetchGirls(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchGirls()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchGirls()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -229,7 +229,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -237,12 +237,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchMenBottoms(): LiveData<List<GetModel>>
+    fun fetchMenBottoms(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchMenBottoms()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchMenBottoms()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -256,7 +256,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -264,12 +264,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchMenTops(): LiveData<List<GetModel>>
+    fun fetchMenTops(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchMenTops()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchMenTops()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -283,7 +283,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -291,12 +291,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchShoes(): LiveData<List<GetModel>>
+    fun fetchShoes(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchShoes()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchShoes()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -310,7 +310,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 
@@ -318,12 +318,12 @@ class HomeRepository {
         return data
     }
 
-    fun fetchTops(): LiveData<List<GetModel>>
+    fun fetchTops(): LiveData<List<ProductModel>>
     {
-        val data = MutableLiveData<List<GetModel>>()
-        apiInterface?.fetchTops()?.enqueue(object: Callback<List<GetModel>>
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchTops()?.enqueue(object: Callback<List<ProductModel>>
         {
-            override fun onResponse(call: Call<List<GetModel>>, response: Response<List<GetModel>>)
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
@@ -337,7 +337,7 @@ class HomeRepository {
                 }
             }
 
-            override fun onFailure(call: Call<List<GetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
 

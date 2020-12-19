@@ -16,35 +16,29 @@ class ShippingActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shipping)
 
-        // added
-        buttonContinueToPayment.setOnClickListener {
-            var id: Int = rg_shipping.checkedRadioButtonId
-            if (id != -1) {
-                // val radio:RadioButton = findViewById(id)
-                Toast.makeText(this, "You chose delivery.", Toast.LENGTH_SHORT).show()
-                gotoNewActivity(PaymentActivity())
-            }
-            else {
-                Toast.makeText(this, "Choose shipping method.", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         initOnClickListeners()
-
     }
 
     override fun onClick(v: View?) {
         when(v?.id)
         {
             R.id.buttonBackShipping -> finishMe()
-            // R.id.buttonContinueToPayment -> gotoNewActivity(PaymentActivity())
+            R.id.buttonContinueToPayment ->
+                if (rg_shipping.checkedRadioButtonId != -1)
+                {
+                    showToast("You chose ${rb_delivery.text}")
+                    gotoNewActivity(PaymentActivity())
+                } else showToast("Please select a shipping method")
         }
     }
 
-    private fun initOnClickListeners()
-    {
+    private fun initOnClickListeners() {
         buttonBackShipping.setOnClickListener(this)
-        // buttonContinueToPayment.setOnClickListener(this)
+        buttonContinueToPayment.setOnClickListener(this)
+    }
+
+    private fun showToast(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
     private fun gotoNewActivity(activity : Activity) {
@@ -52,8 +46,7 @@ class ShippingActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
-    private fun finishMe()
-    {
+    private fun finishMe() {
         this.finish()
     }
 }

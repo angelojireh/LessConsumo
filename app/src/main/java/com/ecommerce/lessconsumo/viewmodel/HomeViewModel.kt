@@ -4,78 +4,78 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.lesscon.home.data.GetModel
+import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.data.HomeRepository
 
 class HomeViewModel(application: Application): AndroidViewModel(application)
 {
 
     private var homeRepository: HomeRepository? = null
-    var getModelListLiveData : LiveData<List<GetModel>>? = null
+    var productModelListLiveData : LiveData<List<ProductModel>>? = null
 
     init
     {
         homeRepository = HomeRepository()
-        getModelListLiveData = MutableLiveData()
+        productModelListLiveData = MutableLiveData()
     }
 
     fun fetchAllProducts()
     {
-        getModelListLiveData = homeRepository?.fetchAllProducts()
+        productModelListLiveData = homeRepository?.fetchAllProducts()
     }
 
     fun fetchOnSaleProducts()
     {
-        getModelListLiveData = homeRepository?.fetchOnSaleProducts()
+        productModelListLiveData = homeRepository?.fetchOnSaleProducts()
     }
 
     fun fetchNewProducts()
     {
-        getModelListLiveData = homeRepository?.fetchNewProducts()
+        productModelListLiveData = homeRepository?.fetchNewProducts()
     }
 
     fun fetchBags()
     {
-        getModelListLiveData = homeRepository?.fetchBags()
+        productModelListLiveData = homeRepository?.fetchBags()
     }
 
     fun fetchBottoms()
     {
-        getModelListLiveData = homeRepository?.fetchBottoms()
+        productModelListLiveData = homeRepository?.fetchBottoms()
     }
 
     fun fetchBoys()
     {
-        getModelListLiveData = homeRepository?.fetchBoys()
+        productModelListLiveData = homeRepository?.fetchBoys()
     }
 
     fun fetchDresses()
     {
-        getModelListLiveData = homeRepository?.fetchDresses()
+        productModelListLiveData = homeRepository?.fetchDresses()
     }
 
     fun fetchGirls()
     {
-        getModelListLiveData = homeRepository?.fetchGirls()
+        productModelListLiveData = homeRepository?.fetchGirls()
     }
 
     fun fetchMenBottoms()
     {
-        getModelListLiveData = homeRepository?.fetchMenBottoms()
+        productModelListLiveData = homeRepository?.fetchMenBottoms()
     }
 
     fun fetchMenTops()
     {
-        getModelListLiveData = homeRepository?.fetchMenTops()
+        productModelListLiveData = homeRepository?.fetchMenTops()
     }
 
     fun fetchShoes()
     {
-        getModelListLiveData = homeRepository?.fetchShoes()
+        productModelListLiveData = homeRepository?.fetchShoes()
     }
 
     fun fetchTops()
     {
-        getModelListLiveData = homeRepository?.fetchTops()
+        productModelListLiveData = homeRepository?.fetchTops()
     }
 }

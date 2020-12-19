@@ -1,69 +1,119 @@
-package com.ecommerce.lessconsumo.data
+package com.example.lesscon.home.data
 
-import android.app.Activity
-import android.content.Intent
-import android.text.Html
-import com.ecommerce.lessconsumo.activity.ProductActivity
-import com.example.lesscon.home.data.GetModel
-import java.text.NumberFormat
-import java.util.*
-import kotlin.collections.ArrayList
+data class ProductModel(
+    val _links: Links,
+    val attributes: List<Any>,
+    val average_rating: String,
+    val backordered: Boolean,
+    val backorders: String,
+    val backorders_allowed: Boolean,
+    val button_text: String,
+    val catalog_visibility: String,
+    val categories: List<Category>,
+    val cross_sell_ids: List<Any>,
+    val date_created: String,
+    val date_created_gmt: String,
+    val date_modified: String,
+    val date_modified_gmt: String,
+    val date_on_sale_from: Any,
+    val date_on_sale_from_gmt: Any,
+    val date_on_sale_to: Any,
+    val date_on_sale_to_gmt: Any,
+    val default_attributes: List<Any>,
+    val description: String,
+    val dimensions: Dimensions,
+    val download_expiry: Int,
+    val download_limit: Int,
+    val downloadable: Boolean,
+    val downloads: List<Any>,
+    val external_url: String,
+    val featured: Boolean,
+    val grouped_products: List<Any>,
+    val id: Int,
+    val images: List<Image>,
+    val manage_stock: Boolean,
+    val menu_order: Int,
+    val meta_data: List<MetaData>,
+    val name: String,
+    val on_sale: Boolean,
+    val parent_id: Int,
+    val permalink: String,
+    val price: String,
+    val price_html: String,
+    val purchasable: Boolean,
+    val purchase_note: String,
+    val rating_count: Int,
+    val regular_price: String,
+    val related_ids: List<Int>,
+    val reviews_allowed: Boolean,
+    val sale_price: String,
+    val shipping_class: String,
+    val shipping_class_id: Int,
+    val shipping_required: Boolean,
+    val shipping_taxable: Boolean,
+    val short_description: String,
+    val sku: String,
+    val slug: String,
+    val sold_individually: Boolean,
+    val status: String,
+    val stock_quantity: Int,
+    val stock_status: String,
+    val tags: List<Tag>,
+    val tax_class: String,
+    val tax_status: String,
+    val total_sales: Int,
+    val type: String,
+    val upsell_ids: List<Any>,
+    val variations: List<Any>,
+    val virtual: Boolean,
+    val weight: String,
+    val yoast_head: String
+) {
+    data class Links(
+        val collection: List<Collection>,
+        val self: List<Self>
+    ) {
+        data class Collection(
+            val href: String
+        )
 
-class ProductModel(val context: Activity, val position: Int, var data: ArrayList<GetModel> ) {
-    fun showProductData()
-    {
-        val NO_IMAGE_URL = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
-        val productName = data[position].name
-        val productSKU = data[position].sku
-        val productStock = data[position].stock_quantity
-        val productDescription = Html.fromHtml(data[position].short_description)
-        val productImage = if((data[position].images).isNotEmpty())
-            data[position].images[0].src else NO_IMAGE_URL
-        val size = ((productDescription.toString()).substringAfter("Size:")).substringBefore(',')
-        var regularPrice = data[position].regular_price
-        var salePrice = data[position].sale_price
-        var categories = ""
-
-        if((regularPrice).isNotEmpty())
-            regularPrice = currencyFormatter(regularPrice.toDouble()) else ""
-        if((salePrice).isNotEmpty())
-            salePrice = currencyFormatter(salePrice.toDouble()) else ""
-        for(c in data[position].categories)
-            categories += c.slug.plus(", ")
-
-        gotoProductActivity(context, productName, productSKU, productStock.toString(), productDescription.toString(), productImage, size, regularPrice, salePrice, categories)
+        data class Self(
+            val href: String
+        )
     }
 
-    fun currencyFormatter(mNumber: Double): String
-    {
-        val mNumberFormat: NumberFormat = NumberFormat.getCurrencyInstance()
-        mNumberFormat.maximumFractionDigits = 2
-        mNumberFormat.currency = Currency.getInstance("PHP")
-        return (mNumberFormat.format(mNumber)).toString()
-    }
+    data class Category(
+        val id: Int,
+        val name: String,
+        val slug: String
+    )
 
-    fun gotoProductActivity(
-            context: Activity,
-            productName: String,
-            productSKU: String,
-            productStock: String,
-            productDescription: String,
-            productImage: String,
-            size: String,
-            regularPrice: String,
-            salePrice: String,
-            categories: String)
-    {
-        val i = Intent(context, ProductActivity::class.java)
-        i.putExtra("productImage", productImage)
-        i.putExtra("productName", productName)
-        i.putExtra("regularPrice", regularPrice)
-        i.putExtra("salePrice", salePrice)
-        i.putExtra("sku", productSKU)
-        i.putExtra("stock", productStock)
-        i.putExtra("shortDescription", productDescription)
-        i.putExtra("size", size)
-        i.putExtra("categories", categories)
-        context.startActivity(i)
-    }
+    data class Dimensions(
+        val height: String,
+        val length: String,
+        val width: String
+    )
+
+    data class Image(
+        val alt: String,
+        val date_created: String,
+        val date_created_gmt: String,
+        val date_modified: String,
+        val date_modified_gmt: String,
+        val id: Int,
+        val name: String,
+        val src: String
+    )
+
+    data class MetaData(
+        val id: Int,
+        val key: String,
+        val value: Any
+    )
+
+    data class Tag(
+        val id: Int,
+        val name: String,
+        val slug: String
+    )
 }
