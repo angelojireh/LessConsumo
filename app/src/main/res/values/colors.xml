@@ -19,4 +19,5 @@
     <color name="colorBackground">#C4C4C4</color>
     <color name="colorDark">#FFFFFF</color>
     <color name="colorLight">#FFFFFF</color>
+    <color name="colorSearch">#80F00674</color>
 </resources>

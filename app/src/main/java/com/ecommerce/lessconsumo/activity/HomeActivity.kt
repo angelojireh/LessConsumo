@@ -1,6 +1,5 @@
 package com.ecommerce.lessconsumo.activity
 
-
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -35,8 +34,32 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         loadSaleProducts()
 
         // added
+        buttonNotification.setOnClickListener {
+            Toast.makeText(this, "This feature is not yet available.", Toast.LENGTH_SHORT).show()
+        }
+        buttonSearch.setOnClickListener {
+            gotoNewActivity(SearchActivity())
+        }
+        buttonAccount.setOnClickListener {
+            gotoNewActivity(ProfilesActivity())
+        }
         buttonCart.setOnClickListener {
             gotoNewActivity(CartActivity())
+        }
+        buttonViewall.setOnClickListener {
+            Toast.makeText(this, "This feature is not yet available.", Toast.LENGTH_SHORT).show()
+        }
+        textviewSale.setOnClickListener {
+            gotoNewActivity(SaleActivity())
+        }
+        textviewMen.setOnClickListener {
+            gotoNewActivity(MenActivity())
+        }
+        textviewWomen.setOnClickListener {
+            gotoNewActivity(WomenActivity())
+        }
+        textviewChild.setOnClickListener {
+            gotoNewActivity(ChildActivity())
         }
 
     }

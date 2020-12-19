@@ -28,6 +28,9 @@ class PaymentActivity : AppCompatActivity() {
                 Toast.makeText(this, "Choose payment method.", Toast.LENGTH_SHORT).show()
             }
         }
+        buttonBackPayment.setOnClickListener {
+            this.finish()
+        }
     }
 
     fun radio_button_click(view: View){

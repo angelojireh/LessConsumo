@@ -30,6 +30,7 @@
 
     <style name="categories">
         <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorGray</item>
     </style>
 
 </resources>
