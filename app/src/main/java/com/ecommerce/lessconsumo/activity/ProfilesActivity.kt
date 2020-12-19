@@ -1,5 +1,7 @@
 package com.ecommerce.lessconsumo.activity
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -15,8 +17,16 @@ class ProfilesActivity : AppCompatActivity() {
         buttonBackProfile.setOnClickListener {
             this.finish()
         }
+        buttonCartProfile.setOnClickListener {
+            gotoNewActivity(CartActivity())
+        }
         buttonEdit.setOnClickListener {
             Toast.makeText(this, "This feature is not yet available.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun gotoNewActivity(activity : Activity) {
+        val intent = Intent (this, activity::class.java)
+        startActivity(intent)
     }
 }
