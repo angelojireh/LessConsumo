@@ -33,35 +33,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         initSaleProductsAdapter()
         loadSaleProducts()
 
-        // added
-        buttonNotification.setOnClickListener {
-            Toast.makeText(this, "This feature is not yet available.", Toast.LENGTH_SHORT).show()
-        }
-        buttonSearch.setOnClickListener {
-            gotoNewActivity(SearchActivity())
-        }
-        buttonAccount.setOnClickListener {
-            gotoNewActivity(ProfilesActivity())
-        }
-        buttonCart.setOnClickListener {
-            gotoNewActivity(CartActivity())
-        }
-        buttonViewall.setOnClickListener {
-            Toast.makeText(this, "This feature is not yet available.", Toast.LENGTH_SHORT).show()
-        }
-        textviewSale.setOnClickListener {
-            gotoNewActivity(SaleActivity())
-        }
-        textviewMen.setOnClickListener {
-            gotoNewActivity(MenActivity())
-        }
-        textviewWomen.setOnClickListener {
-            gotoNewActivity(WomenActivity())
-        }
-        textviewChild.setOnClickListener {
-            gotoNewActivity(ChildActivity())
-        }
-
     }
 
     override fun onClick(v: View?) {
@@ -76,6 +47,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
             R.id.buttonMenbottoms -> gotoNewActivity(MenBottomsActivity())
             R.id.buttonBoys -> gotoNewActivity(BoysActivity())
             R.id.buttonGirls -> gotoNewActivity(GirlsActivity())
+            R.id.buttonNotification -> showToast("This feature is not yet available.")
+            R.id.buttonSearch -> gotoNewActivity(SearchActivity())
+            R.id.buttonAccount -> gotoNewActivity(ProfilesActivity())
+            R.id.buttonCart -> gotoNewActivity(CartActivity())
+            R.id.buttonViewall -> showToast("This feature is not yet available.")
+            R.id.textviewSale -> gotoNewActivity(SaleActivity())
+            R.id.textviewMen -> gotoNewActivity(MenActivity())
+            R.id.textviewWomen -> gotoNewActivity(WomenActivity())
+            R.id.textviewChild -> gotoNewActivity(ChildActivity())
         }
     }
 
@@ -89,6 +69,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         buttonMenbottoms.setOnClickListener(this)
         buttonBoys.setOnClickListener(this)
         buttonGirls.setOnClickListener(this)
+        buttonNotification.setOnClickListener(this)
+        buttonSearch.setOnClickListener(this)
+        buttonAccount.setOnClickListener(this)
+        buttonCart.setOnClickListener(this)
+        buttonViewall.setOnClickListener(this)
+        textviewSale.setOnClickListener(this)
+        textviewMen.setOnClickListener(this)
+        textviewWomen.setOnClickListener(this)
+        textviewChild.setOnClickListener(this)
     }
 
     private fun initSaleProductsAdapter() {
