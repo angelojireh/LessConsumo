@@ -344,4 +344,31 @@ class HomeRepository {
         })
         return data
     }
+
+    fun searchItems(item: String): LiveData<List<ProductModel>>
+    {
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.searchItems(item)?.enqueue(object: Callback<List<ProductModel>>
+        {
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == 200 && res!=null)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
 }

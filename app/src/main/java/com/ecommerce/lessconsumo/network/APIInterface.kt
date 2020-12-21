@@ -3,6 +3,7 @@ package com.example.lesscon.network
 import com.example.lesscon.home.data.ProductModel
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface APIInterface
 {
@@ -41,4 +42,7 @@ interface APIInterface
 
     @GET("products?search=tops&per_page=15")
     fun fetchTops(): Call<List<ProductModel>>
+
+    @GET("products?per_page=15")
+    fun searchItems(@Query("search") item: String): Call<List<ProductModel>>
 }

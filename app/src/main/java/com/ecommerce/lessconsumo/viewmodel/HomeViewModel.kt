@@ -78,4 +78,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
     {
         productModelListLiveData = homeRepository?.fetchTops()
     }
+
+    fun searchItems(item: String)
+    {
+        productModelListLiveData = homeRepository?.searchItems(item)
+    }
 }
