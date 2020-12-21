@@ -3,6 +3,8 @@ package com.ecommerce.lessconsumo.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +28,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener{
 
         initButtonListeners()
         initSearchAdapter()
+        initSearchBarSuggestions()
     }
 
     override fun onClick(v: View?) {
@@ -39,6 +42,13 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener{
     private fun initButtonListeners() {
         buttonBackSearch.setOnClickListener(this)
         buttonSearchLC.setOnClickListener(this)
+        editText_search.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH)
+            {
+                loadSearch()
+                true
+            } else false
+        }
     }
 
     private fun initSearchAdapter()
@@ -46,6 +56,14 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener{
         mSearchAdapter = SearchAdapter(this)
         recyclerView_search.layoutManager = GridLayoutManager(this, 2)
         recyclerView_search.adapter = mSearchAdapter
+    }
+
+    private fun initSearchBarSuggestions()
+    {
+        val searchSuggestions: Array<out String> = resources.getStringArray(R.array.search_suggestions)
+        ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, searchSuggestions).also { adapter ->
+            editText_search.setAdapter(adapter)
+        }
     }
 
     private fun showToast(s: String) {

@@ -41,4 +41,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="search_suggestions">
+        <item>shoes</item>
+        <item>tops</item>
+        <item>bottoms</item>
+        <item>pants</item>
+        <item>jacket</item>
+        <item>bag</item>
+        <item>dress</item>
+        <item>blouse</item>
+        <item>men</item>
+        <item>kids</item>
+        <item>women</item>
+        <item>shorts</item>
+        <item>shirt</item>
+        <item>boys</item>
+        <item>girls</item>
+    </string-array>
+
 </resources>
