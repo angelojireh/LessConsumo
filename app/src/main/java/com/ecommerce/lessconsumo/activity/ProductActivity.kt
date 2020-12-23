@@ -59,7 +59,11 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         size = intent.getStringExtra("size")
         categories = intent.getStringExtra("categories")
 
-        Picasso.get().load(productImage).into(iv_productImage)
+        Picasso.get()
+                .load(productImage)
+                .resize(650,650)
+                .centerCrop()
+                .into(iv_productImage)
         tv_productName.text = productName
         tv_sku.text = sku
         tv_stock.text = stock

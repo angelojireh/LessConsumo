@@ -4,12 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.denzcoskun.imageslider.models.SlideModel
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.NewProductsAdapter
 import com.ecommerce.lessconsumo.adapters.SaleProductsAdapter
@@ -23,16 +28,23 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var mSaleProductsAdapter: SaleProductsAdapter
     private lateinit var mNewProductsAdapter: NewProductsAdapter
 
+    private lateinit var mGridLayoutManager: GridLayoutManager
+    private lateinit var mLinearLayoutManager: LinearLayoutManager
+    private var saleProductsPage = 1
+    private var newProductsPage = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        addImageSlider()
         initButtonListeners()
         initNewProductsAdapter()
-        loadNewArrivals()
         initSaleProductsAdapter()
-        loadSaleProducts()
-
+        loadNewArrivals(newProductsPage)
+        loadSaleProducts(saleProductsPage)
+        addNewProductsScrollListener()
+        addSaleProductScrollListener()
     }
 
     override fun onClick(v: View?) {
@@ -81,14 +93,18 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun initSaleProductsAdapter() {
+        mGridLayoutManager = GridLayoutManager(this, 2)
         mSaleProductsAdapter = SaleProductsAdapter(this)
-        recyclerView_saleProducts.layoutManager = GridLayoutManager(this, 2)
+        recyclerView_saleProducts.setHasFixedSize(true)
+        recyclerView_saleProducts.layoutManager = mGridLayoutManager
         recyclerView_saleProducts.adapter = mSaleProductsAdapter
     }
 
     private fun initNewProductsAdapter() {
+        mLinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         mNewProductsAdapter = NewProductsAdapter(this)
-        recyclerView_newArrivals.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_newArrivals.setHasFixedSize(true)
+        recyclerView_newArrivals.layoutManager = mLinearLayoutManager
         recyclerView_newArrivals.adapter = mNewProductsAdapter
     }
 
@@ -101,39 +117,73 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
-    private fun loadNewArrivals() {
+    private fun addImageSlider()
+    {
+        val slidemodels = ArrayList<SlideModel>()
+        slidemodels.add(SlideModel(R.drawable.slider_1))
+        slidemodels.add(SlideModel(R.drawable.slider_2))
+        slidemodels.add(SlideModel(R.drawable.slider_3))
+        slidemodels.add(SlideModel(R.drawable.slider_4))
+        imageviewSlider.setImageList(slidemodels)
+    }
+
+    private fun loadNewArrivals(page: Int) {
         //load new arrivals
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        mHomeViewModel.fetchNewProducts()
+        mHomeViewModel.fetchNewProducts(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_newArrivals.visibility =  View.VISIBLE
                 mNewProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
-            else
-            {
-                showToast("Something went wrong \nit value: $it")
-            }
             progress_newProducts.visibility = View.GONE
         })
     }
 
-    private fun loadSaleProducts() {
+    private fun loadSaleProducts(page: Int) {
         // load sale products
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        mHomeViewModel.fetchOnSaleProducts()
+        mHomeViewModel.fetchOnSaleProducts(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_saleProducts.visibility =  View.VISIBLE
                 mSaleProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
-            else
-            {
-                showToast("Something went wrong \nit value: $it")
-            }
             progress_saleProducts.visibility = View.GONE
+        })
+    }
+
+    private fun addSaleProductScrollListener() {
+        recyclerView_saleProducts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(dy > 0) {
+                    val visibleItemCount = mGridLayoutManager.childCount
+                    val totalItemCount = mGridLayoutManager.itemCount
+                    val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
+                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                        saleProductsPage++
+                        loadSaleProducts(saleProductsPage)
+                    }
+                }
+            }
+        })
+    }
+
+    private fun addNewProductsScrollListener(){
+        recyclerView_newArrivals.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(dx > 0){
+                    val visibleItemCount = mLinearLayoutManager.childCount
+                    val totalItemCount = mLinearLayoutManager.itemCount
+                    val pastVisibleItems = mLinearLayoutManager.findFirstVisibleItemPosition()
+                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                        newProductsPage++
+                        loadNewArrivals(newProductsPage)
+                    }
+                }
+            }
         })
     }
 }

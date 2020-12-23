@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.customclass.ProductDetails
@@ -17,10 +18,10 @@ import kotlin.collections.ArrayList
 
 class NewProductsAdapter(val context: Activity): RecyclerView.Adapter<NewProductsAdapter.NewProductsViewHolder>() {
 
-    private var data: ArrayList<ProductModel>? = null
+    private var data: MutableList<ProductModel>? = ArrayList()
     fun setData(list: ArrayList<ProductModel>)
     {
-        data = list
+        data?.addAll(list)
         notifyDataSetChanged()
     }
 
@@ -46,7 +47,7 @@ class NewProductsAdapter(val context: Activity): RecyclerView.Adapter<NewProduct
         override fun onClick(v: View?) {
             val position: Int = bindingAdapterPosition
             if(position != RecyclerView.NO_POSITION) {
-                val mProductDetails = data?.let { ProductDetails(context, position, it) }
+                val mProductDetails = data?.let { ProductDetails(context, position, it as ArrayList<ProductModel>) }
                 mProductDetails?.showProductData()
             }
         }
@@ -57,9 +58,7 @@ class NewProductsAdapter(val context: Activity): RecyclerView.Adapter<NewProduct
             mNumberFormat.maximumFractionDigits = 2
             mNumberFormat.currency = Currency.getInstance("PHP")
 
-            val no_image = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
             val price: String?
-
             if(item?.price != null && item.price.isNotEmpty())
             {
                 price = mNumberFormat.format(item.price.toDouble())
@@ -73,14 +72,23 @@ class NewProductsAdapter(val context: Activity): RecyclerView.Adapter<NewProduct
             if(item?.images != null && item.images.isNotEmpty())
             {
                 val image_src = item.images[0].src
-                Picasso.get().load(image_src).into(itemView.iv_image)
+                loadPicassoImage(image_src, itemView.iv_image)
             }
             else
             {
-                Picasso.get().load(no_image).into(itemView.iv_image)
+                val no_image = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
+                loadPicassoImage(no_image, itemView.iv_image)
             }
         }
 
+        fun loadPicassoImage(image: String, imageView: ImageView)
+        {
+            Picasso.get()
+                    .load(image)
+                    .resize(450,450)
+                    .centerCrop()
+                    .into(imageView)
+        }
     }
 
 }

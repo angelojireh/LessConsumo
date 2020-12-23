@@ -7,16 +7,21 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.BottomsAdapter
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_bottoms.*
+import kotlinx.android.synthetic.main.activity_bottoms.progressbar
 
 class BottomsActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var mBottomsAdapter: BottomsAdapter
+
+    private lateinit var mGridLayoutManager: GridLayoutManager
+    private var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +29,8 @@ class BottomsActivity : AppCompatActivity(), View.OnClickListener {
 
         initButtonListeners()
         initAdapter()
-        loadBottoms()
+        loadBottoms(page)
+        addScrollListener()
     }
 
     override fun onClick(p0: View?) {
@@ -47,19 +53,15 @@ class BottomsActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
-    private fun loadBottoms()
+    private fun loadBottoms(page: Int)
     {
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        mHomeViewModel.fetchBottoms()
+        mHomeViewModel.fetchBottoms(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
             if (it != null)
             {
                 recyclerView_bottoms.visibility =  View.VISIBLE
                 mBottomsAdapter.setData(it as ArrayList<ProductModel>)
-            }
-            else
-            {
-                showToast("Something went wrong \nit value: $it")
             }
             progressbar.visibility = View.GONE
         })
@@ -67,8 +69,26 @@ class BottomsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initAdapter()
     {
+        mGridLayoutManager = GridLayoutManager(this, 2)
         mBottomsAdapter = BottomsAdapter(this)
-        recyclerView_bottoms.layoutManager = GridLayoutManager(this, 2)
+        recyclerView_bottoms.setHasFixedSize(true)
+        recyclerView_bottoms.layoutManager = mGridLayoutManager
         recyclerView_bottoms.adapter = mBottomsAdapter
+    }
+
+    private fun addScrollListener(){
+        recyclerView_bottoms.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(dy > 0) {
+                    val visibleItemCount = mGridLayoutManager.childCount
+                    val totalItemCount = mGridLayoutManager.itemCount
+                    val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
+                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                        page++
+                        loadBottoms(page)
+                    }
+                }
+            }
+        })
     }
 }

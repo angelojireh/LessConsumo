@@ -24,59 +24,59 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
         productModelListLiveData = homeRepository?.fetchAllProducts()
     }
 
-    fun fetchOnSaleProducts()
+    fun fetchOnSaleProducts(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchOnSaleProducts()
+        productModelListLiveData = homeRepository?.fetchOnSaleProducts(page)
     }
 
-    fun fetchNewProducts()
+    fun fetchNewProducts(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchNewProducts()
+        productModelListLiveData = homeRepository?.fetchNewProducts(page)
     }
 
-    fun fetchBags()
+    fun fetchBags(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchBags()
+        productModelListLiveData = homeRepository?.fetchBags(page)
     }
 
-    fun fetchBottoms()
+    fun fetchBottoms(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchBottoms()
+        productModelListLiveData = homeRepository?.fetchBottoms(page)
     }
 
-    fun fetchBoys()
+    fun fetchBoys(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchBoys()
+        productModelListLiveData = homeRepository?.fetchBoys(page)
     }
 
-    fun fetchDresses()
+    fun fetchDresses(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchDresses()
+        productModelListLiveData = homeRepository?.fetchDresses(page)
     }
 
-    fun fetchGirls()
+    fun fetchGirls(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchGirls()
+        productModelListLiveData = homeRepository?.fetchGirls(page)
     }
 
-    fun fetchMenBottoms()
+    fun fetchMenBottoms(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchMenBottoms()
+        productModelListLiveData = homeRepository?.fetchMenBottoms(page)
     }
 
-    fun fetchMenTops()
+    fun fetchMenTops(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchMenTops()
+        productModelListLiveData = homeRepository?.fetchMenTops(page)
     }
 
-    fun fetchShoes()
+    fun fetchShoes(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchShoes()
+        productModelListLiveData = homeRepository?.fetchShoes(page)
     }
 
-    fun fetchTops()
+    fun fetchTops(page: Int)
     {
-        productModelListLiveData = homeRepository?.fetchTops()
+        productModelListLiveData = homeRepository?.fetchTops(page)
     }
 
     fun searchItems(item: String)

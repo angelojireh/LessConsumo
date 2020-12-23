@@ -44,74 +44,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchOnSaleProducts(): LiveData<List<ProductModel>>
+    fun fetchOnSaleProducts(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchOnSaleProducts()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchOnSaleProducts(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                val totalPages = response.headers().get("x-wp-totalpages")
-                if(response.code() == 200 && res!=null)
-                {
-                    data.value = res
-                    Log.i("onSale_total_pages", totalPages!!)
-                }
-                else
-                {
-                    data.value = null
-                }
-            }
-
-            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
-                data.value = null
-            }
-
-        })
-        return data
-    }
-
-    fun fetchNewProducts(): LiveData<List<ProductModel>>
-    {
-        val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchNewProducts()?.enqueue(object: Callback<List<ProductModel>>
-        {
-            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
-            {
-                Log.d("Response", "onResponse: ${response.body()}")
-                val res = response.body()
-                val totalPages = response.headers().get("x-wp-totalpages")
-                if(response.code() == 200 && res!=null)
-                {
-                    data.value = res
-                    Log.i("newProducts_total_pages", totalPages!!)
-                }
-                else
-                {
-                    data.value = null
-                }
-            }
-
-            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
-                data.value = null
-            }
-
-        })
-        return data
-    }
-
-    fun fetchBags(): LiveData<List<ProductModel>>
-    {
-        val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchBags()?.enqueue(object: Callback<List<ProductModel>>
-        {
-            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
-            {
-                Log.d("Response", "onResponse: ${response.body()}")
-                val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -129,16 +72,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchBottoms(): LiveData<List<ProductModel>>
+    fun fetchNewProducts(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchBottoms()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchNewProducts(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -156,16 +100,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchBoys(): LiveData<List<ProductModel>>
+    fun fetchBags(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchBoys()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchBags(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -183,16 +128,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchDresses(): LiveData<List<ProductModel>>
+    fun fetchBottoms(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchDresses()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchBottoms(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -210,16 +156,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchGirls(): LiveData<List<ProductModel>>
+    fun fetchBoys(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchGirls()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchBoys(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -237,16 +184,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchMenBottoms(): LiveData<List<ProductModel>>
+    fun fetchDresses(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchMenBottoms()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchDresses(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -264,16 +212,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchMenTops(): LiveData<List<ProductModel>>
+    fun fetchGirls(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchMenTops()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchGirls(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -291,16 +240,17 @@ class HomeRepository {
         return data
     }
 
-    fun fetchShoes(): LiveData<List<ProductModel>>
+    fun fetchMenBottoms(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchShoes()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchMenBottoms(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }
@@ -318,16 +268,73 @@ class HomeRepository {
         return data
     }
 
-    fun fetchTops(): LiveData<List<ProductModel>>
+    fun fetchMenTops(page: Int): LiveData<List<ProductModel>>
     {
         val data = MutableLiveData<List<ProductModel>>()
-        apiInterface?.fetchTops()?.enqueue(object: Callback<List<ProductModel>>
+        apiInterface?.fetchMenTops(page)?.enqueue(object: Callback<List<ProductModel>>
         {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchShoes(page: Int): LiveData<List<ProductModel>>
+    {
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchShoes(page)?.enqueue(object: Callback<List<ProductModel>>
+        {
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
+                {
+                    data.value = res
+                }
+                else
+                {
+                    data.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
+                data.value = null
+            }
+
+        })
+        return data
+    }
+
+    fun fetchTops(page: Int): LiveData<List<ProductModel>>
+    {
+        val data = MutableLiveData<List<ProductModel>>()
+        apiInterface?.fetchTops(page)?.enqueue(object: Callback<List<ProductModel>>
+        {
+            override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>)
+            {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
+                if(response.code() == 200 && res!=null && page <= totalPages!!)
                 {
                     data.value = res
                 }

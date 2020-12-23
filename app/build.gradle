@@ -62,4 +62,7 @@ dependencies {
 
     //recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+
+    //imageslider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.7'
 }
