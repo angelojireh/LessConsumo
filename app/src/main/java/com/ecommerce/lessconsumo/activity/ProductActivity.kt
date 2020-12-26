@@ -4,14 +4,21 @@ package com.ecommerce.lessconsumo.activity
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.ecommerce.lessconsumo.R
+import com.ecommerce.lessconsumo.customclass.ShoppingCart
+import com.ecommerce.lessconsumo.data.CartItem
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
+import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
     private var productImage: String? = null
+    private var productID: Int? = null
     private var productName: String? = null
     private var regularPrice: String? = null
     private var salePrice: String? = null
@@ -27,13 +34,22 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
         initOnClickListeners()
         loadProduct()
+        Paper.init(applicationContext)
     }
 
     override fun onClick(v: View?) {
         when(v?.id)
         {
             R.id.buttonBackProduct -> finishMe()
-            R.id.buttonAddToBag -> addToBag()
+            R.id.buttonAddToBag -> {
+                //addToBag()
+                //Snackbar.make(v, "${productName} was added to your cart", Snackbar.LENGTH_SHORT).show()
+
+                //removeFromBag()
+                //Snackbar.make(v, "${productName} was removed from your cart", Snackbar.LENGTH_SHORT).show()
+
+                Log.i("paperDB", ShoppingCart.getCart().toString())
+            }
         }
     }
 
@@ -50,6 +66,7 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
     private fun loadProduct()
     {
         productImage = intent.getStringExtra("productImage")
+        productID = intent.getIntExtra("productID", 0)
         productName = intent.getStringExtra("productName")
         regularPrice = intent.getStringExtra("regularPrice")
         salePrice = intent.getStringExtra("salePrice")
@@ -86,6 +103,13 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun addToBag()
     {
-        // add to bag functionality
+        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), salePrice!!.toString())
+        ShoppingCart.addItem(item)
+    }
+
+    private fun removeFromBag()
+    {
+        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), salePrice!!.toString())
+        ShoppingCart.removeItem(item, applicationContext)
     }
 }

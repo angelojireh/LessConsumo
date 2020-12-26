@@ -13,6 +13,7 @@ class ProductDetails(val context: Activity, val position: Int, var data: ArrayLi
     fun showProductData()
     {
         val NO_IMAGE_URL = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
+        val productID = data[position].id
         val productName = data[position].name
         val productSKU = data[position].sku
         val productStock = data[position].stock_quantity
@@ -31,7 +32,7 @@ class ProductDetails(val context: Activity, val position: Int, var data: ArrayLi
         for(c in data[position].categories)
             categories += c.slug.plus(", ")
 
-        gotoProductActivity(context, productName, productSKU, productStock.toString(), productDescription.toString(), productImage, size, regularPrice, salePrice, categories)
+        gotoProductActivity(context, productID, productName, productSKU, productStock.toString(), productDescription.toString(), productImage, size, regularPrice, salePrice, categories)
     }
 
     fun currencyFormatter(mNumber: Double): String
@@ -44,6 +45,7 @@ class ProductDetails(val context: Activity, val position: Int, var data: ArrayLi
 
     fun gotoProductActivity(
             context: Activity,
+            productID: Int,
             productName: String,
             productSKU: String,
             productStock: String,
@@ -56,6 +58,7 @@ class ProductDetails(val context: Activity, val position: Int, var data: ArrayLi
     {
         val i = Intent(context, ProductActivity::class.java)
         i.putExtra("productImage", productImage)
+        i.putExtra("productID", productID)
         i.putExtra("productName", productName)
         i.putExtra("regularPrice", regularPrice)
         i.putExtra("salePrice", salePrice)

@@ -65,4 +65,7 @@ dependencies {
 
     //imageslider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.0.7'
+
+    //paperDB
+    implementation 'io.paperdb:paperdb:2.7.1'
 }
