@@ -18,7 +18,7 @@
             app:layout_constraintGuide_percent="0.75" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/cartItemImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="16dp"
@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/cartItemName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -39,11 +40,23 @@
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/cartItemImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textview_item_price"
+            android:id="@+id/cartItemRemove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Remove"
+            android:textColor="@color/colorRed"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@id/cartItemName"
+            app:layout_constraintStart_toEndOf="@id/cartItemImage"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/cartItemPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="2dp"
@@ -64,7 +77,7 @@
             android:background="@color/colorGray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/cartItemImage"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="2dp"/>
 

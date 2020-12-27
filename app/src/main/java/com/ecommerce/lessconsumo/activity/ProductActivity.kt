@@ -32,9 +32,9 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
+        Paper.init(applicationContext)
         initOnClickListeners()
         loadProduct()
-        Paper.init(applicationContext)
     }
 
     override fun onClick(v: View?) {
@@ -42,12 +42,9 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         {
             R.id.buttonBackProduct -> finishMe()
             R.id.buttonAddToBag -> {
-                //addToBag()
-                //Snackbar.make(v, "${productName} was added to your cart", Snackbar.LENGTH_SHORT).show()
 
-                //removeFromBag()
-                //Snackbar.make(v, "${productName} was removed from your cart", Snackbar.LENGTH_SHORT).show()
-
+                addToBag()
+                Snackbar.make(v, "${productName} was added to your cart", Snackbar.LENGTH_SHORT).show()
                 Log.i("paperDB", ShoppingCart.getCart().toString())
             }
         }
@@ -103,13 +100,13 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun addToBag()
     {
-        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), salePrice!!.toString())
+        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), tv_salePrice.text.toString())
         ShoppingCart.addItem(item)
     }
 
     private fun removeFromBag()
     {
-        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), salePrice!!.toString())
+        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), tv_salePrice.text.toString())
         ShoppingCart.removeItem(item, applicationContext)
     }
 }

@@ -7,7 +7,7 @@ import io.paperdb.Paper
 class ShoppingCart {
     companion object{
 
-        fun addItem(cartItem: CartItem) {
+        fun addItem(cartItem: CartItem){
             val cart = getCart()
             val targetItem = cart.singleOrNull { it.id == cartItem.id }
             if(targetItem == null) {
