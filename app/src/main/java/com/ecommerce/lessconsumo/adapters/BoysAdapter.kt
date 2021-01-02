@@ -11,9 +11,6 @@ import com.ecommerce.lessconsumo.customclass.ProductDetails
 import com.example.lesscon.home.data.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_category_recyclerview.view.*
-import kotlinx.android.synthetic.main.layout_category_recyclerview.view.iv_image
-import kotlinx.android.synthetic.main.layout_category_recyclerview.view.sale_price
-import kotlinx.android.synthetic.main.layout_sale_products.view.*
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList

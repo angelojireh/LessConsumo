@@ -1,9 +1,9 @@
 package com.ecommerce.lessconsumo.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +13,6 @@ import com.ecommerce.lessconsumo.adapters.MenBottomsAdapter
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_men_bottoms.*
-import kotlinx.android.synthetic.main.activity_men_bottoms.progressbar
 
 class MenBottomsActivity : AppCompatActivity(), View.OnClickListener {
 

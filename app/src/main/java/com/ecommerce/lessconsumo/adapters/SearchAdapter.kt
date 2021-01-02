@@ -10,10 +10,8 @@ import com.ecommerce.lessconsumo.customclass.ProductDetails
 import com.example.lesscon.home.data.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_category_recyclerview.view.*
-import kotlinx.android.synthetic.main.layout_category_recyclerview.view.iv_image
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class SearchAdapter(val context: Activity): RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 

@@ -1,7 +1,7 @@
 package com.ecommerce.lessconsumo.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.ecommerce.lessconsumo.R
 
 class NewProductActivity : AppCompatActivity() {

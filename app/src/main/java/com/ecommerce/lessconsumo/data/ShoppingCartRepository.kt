@@ -1,13 +1,12 @@
-package com.ecommerce.lessconsumo.customclass
+package com.ecommerce.lessconsumo.data
 
 import android.content.Context
-import com.ecommerce.lessconsumo.data.CartItem
 import io.paperdb.Paper
 
-class ShoppingCart {
+class ShoppingCartRepository {
     companion object{
 
-        fun addItem(cartItem: CartItem){
+        fun addItem(cartItem: CartItemModel){
             val cart = getCart()
             val targetItem = cart.singleOrNull { it.id == cartItem.id }
             if(targetItem == null) {
@@ -16,7 +15,7 @@ class ShoppingCart {
             saveCart(cart)
         }
 
-        fun removeItem(cartItem: CartItem, context: Context) {
+        fun removeItem(cartItem: CartItemModel, context: Context) {
             val cart = getCart()
             val targetItem = cart.singleOrNull { it.id == cartItem.id }
             if(targetItem != null){
@@ -25,11 +24,11 @@ class ShoppingCart {
             saveCart(cart)
         }
 
-        fun saveCart(cart: MutableList<CartItem>) {
+        fun saveCart(cart: MutableList<CartItemModel>) {
             Paper.book().write("cart", cart)
         }
 
-        fun getCart(): MutableList<CartItem> {
+        fun getCart(): MutableList<CartItemModel> {
             return Paper.book().read("cart", mutableListOf())
         }
     }

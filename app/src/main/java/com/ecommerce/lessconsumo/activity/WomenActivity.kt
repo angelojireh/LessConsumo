@@ -2,10 +2,9 @@ package com.ecommerce.lessconsumo.activity
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.ecommerce.lessconsumo.R
-import kotlinx.android.synthetic.main.activity_sale.*
 import kotlinx.android.synthetic.main.activity_women.*
 
 class WomenActivity : AppCompatActivity() {

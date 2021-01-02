@@ -11,7 +11,6 @@ import com.ecommerce.lessconsumo.customclass.ProductDetails
 import com.example.lesscon.home.data.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_new_arrivals.view.*
-import kotlinx.android.synthetic.main.layout_new_arrivals.view.iv_image
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList

@@ -2,15 +2,13 @@ package com.ecommerce.lessconsumo.activity
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.ecommerce.lessconsumo.R
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.activity_payment.view.*
-import kotlinx.android.synthetic.main.activity_shipping.*
 
 class PaymentActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {

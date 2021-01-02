@@ -2,14 +2,13 @@ package com.ecommerce.lessconsumo.activity
 
 
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.ecommerce.lessconsumo.R
-import com.ecommerce.lessconsumo.customclass.ShoppingCart
-import com.ecommerce.lessconsumo.data.CartItem
+import com.ecommerce.lessconsumo.data.ShoppingCartRepository
+import com.ecommerce.lessconsumo.data.CartItemModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import io.paperdb.Paper
@@ -32,6 +31,7 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
+        //PaperDB initialization
         Paper.init(applicationContext)
         initOnClickListeners()
         loadProduct()
@@ -42,10 +42,9 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         {
             R.id.buttonBackProduct -> finishMe()
             R.id.buttonAddToBag -> {
-
                 addToBag()
                 Snackbar.make(v, "${productName} was added to your cart", Snackbar.LENGTH_SHORT).show()
-                Log.i("paperDB", ShoppingCart.getCart().toString())
+                Log.i("paperDB", ShoppingCartRepository.getCart().toString())
             }
         }
     }
@@ -100,13 +99,7 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun addToBag()
     {
-        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), tv_salePrice.text.toString())
-        ShoppingCart.addItem(item)
-    }
-
-    private fun removeFromBag()
-    {
-        val item = CartItem(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), tv_salePrice.text.toString())
-        ShoppingCart.removeItem(item, applicationContext)
+        val item = CartItemModel(productID!!.toInt(), 1, productName!!.toString(), productImage!!.toString(), tv_salePrice.text.toString())
+        ShoppingCartRepository.addItem(item)
     }
 }
