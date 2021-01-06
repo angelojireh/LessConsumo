@@ -2,9 +2,11 @@ package com.ecommerce.lessconsumo.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.lessconsumo.R
 import com.ecommerce.lessconsumo.adapters.CartAdapter
@@ -69,6 +71,7 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, CartAdapter.Remo
             Snackbar.make(cart_activity_view, "Cart updated.", Snackbar.LENGTH_SHORT).show()
         } else {
             textview_subtotal_price.text = currencyFormatter(0.00)
+            disableCheckout()
             Snackbar.make(cart_activity_view, "Your cart is empty.", Snackbar.LENGTH_SHORT).show()
         }
     }
@@ -85,6 +88,11 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, CartAdapter.Remo
         mNumberFormat.maximumFractionDigits = 2
         mNumberFormat.currency = Currency.getInstance("PHP")
         return (mNumberFormat.format(mNumber)).toString()
+    }
+
+    fun disableCheckout(){
+        buttonCheckout.isEnabled = false
+        buttonCheckout.setBackgroundResource(R.drawable.background_button_uncolored)
     }
 
     //interface from cart adapter
