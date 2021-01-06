@@ -21,6 +21,7 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var mGridLayoutManager: GridLayoutManager
     private var page = 1
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun loadBags(page: Int)
     {
+        isLoading = true
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchBags(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
@@ -63,6 +65,7 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
                 mBagsAdapter.setData(it as ArrayList<ProductModel>)
             }
             progressbar.visibility = View.GONE
+            isLoading = false
         })
     }
 
@@ -79,13 +82,17 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
         recyclerView_bags.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if(dy > 0) {
-                    val visibleItemCount = mGridLayoutManager.childCount
+                    if(!isLoading){
+                        page++
+                        loadBags(page)
+                    }
+                    /*val visibleItemCount = mGridLayoutManager.childCount
                     val totalItemCount = mGridLayoutManager.itemCount
                     val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
                     if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                         page++
                         loadBags(page)
-                    }
+                    }*/
                 }
             }
         })

@@ -21,6 +21,7 @@ class TopsActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mGridLayoutManager: GridLayoutManager
     private var page = 1
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class TopsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun loadTops(page: Int)
     {
+        isLoading = true
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchTops(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
@@ -63,6 +65,7 @@ class TopsActivity : AppCompatActivity(), View.OnClickListener {
                 mTopsAdapter.setData(it as ArrayList<ProductModel>)
             }
             progressbar.visibility = View.GONE
+            isLoading = false
         })
     }
 
@@ -78,13 +81,17 @@ class TopsActivity : AppCompatActivity(), View.OnClickListener {
         recyclerView_tops.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if(dy > 0) {
-                    val visibleItemCount = mGridLayoutManager.childCount
+                    if(!isLoading){
+                        page++
+                        loadTops(page)
+                    }
+                    /*val visibleItemCount = mGridLayoutManager.childCount
                     val totalItemCount = mGridLayoutManager.itemCount
                     val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
                     if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                         page++
                         loadTops(page)
-                    }
+                    }*/
                 }
             }
         })
