@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
-import com.ecommerce.lessconsumo.adapters.MenTopsAdapter
+import com.ecommerce.lessconsumo.adapters.CategoriesAdapter
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_men_tops.*
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_men_tops.*
 class MenTopsActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mHomeViewModel: HomeViewModel
-    private lateinit var mMenTopsAdapter: MenTopsAdapter
+    private lateinit var mMenTopsAdapter: CategoriesAdapter
 
     private lateinit var mGridLayoutManager: GridLayoutManager
     private var page = 1
@@ -69,7 +69,7 @@ class MenTopsActivity : AppCompatActivity(), View.OnClickListener {
     private fun initAdapter()
     {
         mGridLayoutManager = GridLayoutManager(this, 2)
-        mMenTopsAdapter = MenTopsAdapter(this)
+        mMenTopsAdapter = CategoriesAdapter(this)
         recyclerView_menTops.setHasFixedSize(true)
         recyclerView_menTops.layoutManager = mGridLayoutManager
         recyclerView_menTops.adapter = mMenTopsAdapter

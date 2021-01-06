@@ -15,7 +15,7 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class BottomsAdapter(val context: Activity): RecyclerView.Adapter<BottomsAdapter.BottomsViewHolder>() {
+class CategoriesAdapter(val context: Activity): RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
     private var data: MutableList<ProductModel>? = ArrayList()
     fun setData(list: ArrayList<ProductModel>)
@@ -24,11 +24,11 @@ class BottomsAdapter(val context: Activity): RecyclerView.Adapter<BottomsAdapter
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomsViewHolder {
-        return BottomsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_category_recyclerview, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
+        return CategoriesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_category_recyclerview, parent, false))
     }
 
-    override fun onBindViewHolder(holder: BottomsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val item = data?.get(position)
         holder.bindView(item)
     }
@@ -37,7 +37,7 @@ class BottomsAdapter(val context: Activity): RecyclerView.Adapter<BottomsAdapter
         return data?.size ?: 0
     }
 
-    inner class BottomsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener
+    inner class CategoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener
     {
         init {
             itemView.setOnClickListener(this)

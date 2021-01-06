@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
-import com.ecommerce.lessconsumo.adapters.BagsAdapter
+import com.ecommerce.lessconsumo.adapters.CategoriesAdapter
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_bags.*
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_bags.*
 class BagsActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var mHomeViewModel: HomeViewModel
-    private lateinit var mBagsAdapter: BagsAdapter
+    private lateinit var mBagsAdapter: CategoriesAdapter
 
     private lateinit var mGridLayoutManager: GridLayoutManager
     private var page = 1
@@ -69,7 +69,7 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
     private fun initAdapter()
     {
         mGridLayoutManager = GridLayoutManager(this, 2)
-        mBagsAdapter = BagsAdapter(this)
+        mBagsAdapter = CategoriesAdapter(this)
         recyclerView_bags.setHasFixedSize(true)
         recyclerView_bags.layoutManager = mGridLayoutManager
         recyclerView_bags.adapter = mBagsAdapter

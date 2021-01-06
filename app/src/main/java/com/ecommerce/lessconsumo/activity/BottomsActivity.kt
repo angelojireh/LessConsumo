@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.lessconsumo.R
-import com.ecommerce.lessconsumo.adapters.BottomsAdapter
+import com.ecommerce.lessconsumo.adapters.CategoriesAdapter
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_bottoms.*
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_bottoms.*
 class BottomsActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mHomeViewModel: HomeViewModel
-    private lateinit var mBottomsAdapter: BottomsAdapter
+    private lateinit var mBottomsAdapter: CategoriesAdapter
 
     private lateinit var mGridLayoutManager: GridLayoutManager
     private var page = 1
@@ -69,7 +69,7 @@ class BottomsActivity : AppCompatActivity(), View.OnClickListener {
     private fun initAdapter()
     {
         mGridLayoutManager = GridLayoutManager(this, 2)
-        mBottomsAdapter = BottomsAdapter(this)
+        mBottomsAdapter = CategoriesAdapter(this)
         recyclerView_bottoms.setHasFixedSize(true)
         recyclerView_bottoms.layoutManager = mGridLayoutManager
         recyclerView_bottoms.adapter = mBottomsAdapter
