@@ -72,4 +72,7 @@ dependencies {
     //reactive
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    //spinkit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

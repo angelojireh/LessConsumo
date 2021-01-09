@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ecommerce.lessconsumo.data.OrderModel
+import com.ecommerce.lessconsumo.data.OrderResponseModel
 import com.example.lesscon.home.data.ProductModel
 import com.example.lesscon.home.data.HomeRepository
 
@@ -12,11 +14,13 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
 
     private var homeRepository: HomeRepository? = null
     var productModelListLiveData : LiveData<List<ProductModel>>? = null
+    var orderResponseModelLiveData: LiveData<OrderResponseModel>? = null
 
     init
     {
         homeRepository = HomeRepository()
         productModelListLiveData = MutableLiveData()
+        orderResponseModelLiveData = MutableLiveData()
     }
 
     fun fetchAllProducts()
@@ -82,5 +86,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application)
     fun searchItems(item: String)
     {
         productModelListLiveData = homeRepository?.searchItems(item)
+    }
+
+    fun postOrder(orderData: OrderModel) {
+        orderResponseModelLiveData = homeRepository?.postOrder(orderData)
     }
 }

@@ -3,6 +3,8 @@ package com.example.lesscon.home.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ecommerce.lessconsumo.data.OrderModel
+import com.ecommerce.lessconsumo.data.OrderResponseModel
 import com.example.lesscon.network.APIClient
 import com.example.lesscon.network.APIInterface
 import retrofit2.Call
@@ -11,6 +13,8 @@ import retrofit2.Response
 
 class HomeRepository {
 
+    private val HTTP_OK = 200
+    private val HTTP_CREATED = 201
     private var apiInterface: APIInterface? = null
     init
     {
@@ -26,7 +30,7 @@ class HomeRepository {
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
+                if(response.code() == HTTP_OK && res!=null)
                 {
                     data.value = res
                 }
@@ -54,14 +58,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -82,14 +81,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -110,14 +104,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -138,14 +127,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -166,14 +150,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -194,14 +173,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -222,14 +196,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -250,14 +219,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -278,14 +242,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -306,14 +265,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -334,14 +288,9 @@ class HomeRepository {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
                 val totalPages = (response.headers().get("x-wp-totalpages"))?.toInt()
-                if(response.code() == 200 && res!=null && page <= totalPages!!)
-                {
+                if(response.code() == HTTP_OK && res!=null && page <= totalPages!!) {
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
@@ -361,20 +310,33 @@ class HomeRepository {
             {
                 Log.d("Response", "onResponse: ${response.body()}")
                 val res = response.body()
-                if(response.code() == 200 && res!=null)
-                {
+                if(response.code() == HTTP_OK && res!= null){
                     data.value = res
-                }
-                else
-                {
-                    data.value = null
-                }
+                } else data.value = null
             }
 
             override fun onFailure(call: Call<List<ProductModel>>, t: Throwable) {
                 data.value = null
             }
+        })
+        return data
+    }
 
+    fun postOrder(orderData: OrderModel): LiveData<OrderResponseModel> {
+        val data = MutableLiveData<OrderResponseModel>()
+        apiInterface?.postOrder(orderData)?.enqueue(object: Callback<OrderResponseModel>
+        {
+            override fun onResponse(call: Call<OrderResponseModel>, response: Response<OrderResponseModel>) {
+                Log.d("Response", "onResponse: ${response.body()}")
+                val res = response.body()
+                if(response.code() == HTTP_CREATED && res!= null){
+                    data.value = res
+                } else data.value = null
+            }
+
+            override fun onFailure(call: Call<OrderResponseModel>, t: Throwable) {
+                data.value = null
+            }
         })
         return data
     }

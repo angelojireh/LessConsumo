@@ -1,13 +1,17 @@
 package com.example.lesscon.network
 
+import com.ecommerce.lessconsumo.data.OrderModel
+import com.ecommerce.lessconsumo.data.OrderResponseModel
 import com.example.lesscon.home.data.ProductModel
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface APIInterface
 {
-    @GET("products?per_page=50")
+    @GET("products")
     fun fetchAllProducts(): Call<List<ProductModel>>
 
     @GET("products?on_sale=true")
@@ -45,4 +49,7 @@ interface APIInterface
 
     @GET("products")
     fun searchItems(@Query("search") item: String): Call<List<ProductModel>>
+
+    @POST("orders")
+    fun postOrder(@Body orderData: OrderModel): Call<OrderResponseModel>
 }

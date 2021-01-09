@@ -34,17 +34,17 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, CartAdapter.Remo
         getSubTotal()
     }
 
-    private fun gotoNewActivity(activity : Activity) {
-        val intent = Intent (this, activity::class.java)
-        startActivity(intent)
-    }
-
     override fun onClick(v: View?) {
-        when(v?.id)
-        {
+        when(v?.id) {
             R.id.buttonBackCart -> this.finish()
             R.id.buttonCheckout -> gotoNewActivity(InformationActivity())
         }
+    }
+
+    private fun gotoNewActivity(activity : Activity) {
+        val i = Intent (this, activity::class.java)
+        i.putExtra("subtotal", removeCurrencySymbol(textview_subtotal_price.text.toString()).toDouble())
+        startActivity(i)
     }
 
     private fun initButtonClickListener() {
@@ -61,11 +61,13 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, CartAdapter.Remo
     }
 
     private fun getSubTotal(){
+        var subtotal = 0.00
         if(ShoppingCartRepository.getCart().isNotEmpty()){
-            var subtotal = 0.00
             val items: List<CartItemModel> = ShoppingCartRepository.getCart()
             for(i in items){
-                subtotal += (removeCurrencySymbol(i.price)).toDouble()
+                if(i.price.isNotEmpty()) {
+                    subtotal += (removeCurrencySymbol(i.price)).toDouble()
+                }
             }
             textview_subtotal_price.text = currencyFormatter(subtotal)
             Snackbar.make(cart_activity_view, "Cart updated.", Snackbar.LENGTH_SHORT).show()
