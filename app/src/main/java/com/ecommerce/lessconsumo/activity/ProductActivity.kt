@@ -1,6 +1,8 @@
 package com.ecommerce.lessconsumo.activity
 
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
@@ -40,23 +42,25 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id)
         {
-            R.id.buttonBackProduct -> finishMe()
+            R.id.buttonBackProduct -> this.finish()
             R.id.buttonAddToBag -> {
                 addToBag()
                 Snackbar.make(v, "${productName} was added to your cart", Snackbar.LENGTH_SHORT).show()
                 Log.i("paperDB", ShoppingCartRepository.getCart().toString())
             }
+            R.id.buttonCart -> gotoNewActivity(CartActivity())
         }
     }
 
     private fun initOnClickListeners() {
         buttonBackProduct.setOnClickListener(this)
         buttonAddToBag.setOnClickListener(this)
+        buttonCart.setOnClickListener(this)
     }
 
-    private fun finishMe()
-    {
-        this.finish()
+    private fun gotoNewActivity(activity: Activity) {
+        val i = Intent(this, activity::class.java)
+        startActivity(i)
     }
 
     private fun loadProduct()

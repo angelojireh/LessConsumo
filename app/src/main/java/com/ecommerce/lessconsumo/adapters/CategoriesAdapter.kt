@@ -15,11 +15,10 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CategoriesAdapter(val context: Activity): RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
+class CategoriesAdapter(val context: Activity) : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
     private var data: MutableList<ProductModel>? = ArrayList()
-    fun setData(list: ArrayList<ProductModel>)
-    {
+    fun setData(list: ArrayList<ProductModel>) {
         data?.addAll(list)
         notifyDataSetChanged()
     }
@@ -37,22 +36,20 @@ class CategoriesAdapter(val context: Activity): RecyclerView.Adapter<CategoriesA
         return data?.size ?: 0
     }
 
-    inner class CategoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener
-    {
+    inner class CategoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         init {
             itemView.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
             val position: Int = bindingAdapterPosition
-            if(position != RecyclerView.NO_POSITION) {
+            if (position != RecyclerView.NO_POSITION) {
                 val mProductDetails = data?.let { ProductDetails(context, position, it as ArrayList<ProductModel>) }
                 mProductDetails?.showProductData()
             }
         }
 
-        fun bindView(item: ProductModel?)
-        {
+        fun bindView(item: ProductModel?) {
             val mNumberFormat: NumberFormat = NumberFormat.getCurrencyInstance()
             mNumberFormat.maximumFractionDigits = 2
             mNumberFormat.currency = Currency.getInstance("PHP")
@@ -63,32 +60,26 @@ class CategoriesAdapter(val context: Activity): RecyclerView.Adapter<CategoriesA
             itemView.item_name.text = item?.name
 
             //price
-            if(item?.price != null && item.price.isNotEmpty())
-            {
+            if (item?.price != null && item.price.isNotEmpty()) {
                 price = mNumberFormat.format(item.price.toDouble())
                 itemView.sale_price.text = price
-            }
-            else itemView.sale_price.text = "N/A"
+            } else itemView.sale_price.text = "N/A"
 
 
             //image
-            if(item?.images != null && item.images.isNotEmpty())
-            {
+            if (item?.images != null && item.images.isNotEmpty()) {
                 val image_src = item.images[0].src
                 loadPicassoImage(image_src, itemView.iv_image)
-            }
-            else
-            {
+            } else {
                 val no_image = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
                 loadPicassoImage(no_image, itemView.iv_image)
             }
         }
 
-        fun loadPicassoImage(image: String, imageView: ImageView)
-        {
+        fun loadPicassoImage(image: String, imageView: ImageView) {
             Picasso.get()
                     .load(image)
-                    .resize(450,450)
+                    .resize(450, 450)
                     .centerCrop()
                     .into(imageView)
         }

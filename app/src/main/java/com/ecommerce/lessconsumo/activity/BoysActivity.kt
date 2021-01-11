@@ -1,8 +1,9 @@
 package com.ecommerce.lessconsumo.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,21 +37,21 @@ class BoysActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0?.id)
         {
-            R.id.buttonBackBoys -> finishMe()
+            R.id.buttonBackBoys -> this.finish()
+            R.id.action_bar -> recyclerView_boys.smoothScrollToPosition(0)
+            R.id.buttonCart -> gotoNewActivity(CartActivity())
         }
     }
 
     private fun initButtonListeners() {
         buttonBackBoys.setOnClickListener(this)
+        action_bar.setOnClickListener(this)
+        buttonCart.setOnClickListener(this)
     }
 
-    private fun finishMe()
-    {
-        this.finish()
-    }
-
-    private fun showToast(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    private fun gotoNewActivity(activity: Activity) {
+        val i = Intent(this, activity::class.java)
+        startActivity(i)
     }
 
     private fun loadBoys(page: Int)
@@ -86,14 +87,10 @@ class BoysActivity : AppCompatActivity(), View.OnClickListener {
                         page++
                         loadBoys(page)
                     }
-                    /*val visibleItemCount = mGridLayoutManager.childCount
-                    val totalItemCount = mGridLayoutManager.itemCount
-                    val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                        page++
-                        loadBoys(page)
-                    }*/
                 }
+                if (recyclerView_boys.computeVerticalScrollOffset() > 1000) {
+                    action_bar.visibility = View.VISIBLE
+                } else action_bar.visibility = View.INVISIBLE
             }
         })
     }

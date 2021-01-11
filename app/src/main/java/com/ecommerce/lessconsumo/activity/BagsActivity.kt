@@ -1,8 +1,9 @@
 package com.ecommerce.lessconsumo.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,21 +37,21 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
     override fun onClick(p0: View?) {
         when(p0?.id)
         {
-            R.id.buttonBackBags -> finishMe()
+            R.id.buttonBackBags -> this.finish()
+            R.id.action_bar -> recyclerView_bags.smoothScrollToPosition(0)
+            R.id.buttonCart -> gotoNewActivity(CartActivity())
         }
     }
 
     private fun initButtonListeners() {
         buttonBackBags.setOnClickListener(this)
+        action_bar.setOnClickListener(this)
+        buttonCart.setOnClickListener(this)
     }
 
-    private fun finishMe()
-    {
-        this.finish()
-    }
-
-    private fun showToast(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    private fun gotoNewActivity(activity: Activity) {
+        val i = Intent(this, activity::class.java)
+        startActivity(i)
     }
 
     private fun loadBags(page: Int)
@@ -82,18 +83,15 @@ class BagsActivity : AppCompatActivity(), View.OnClickListener{
         recyclerView_bags.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if(dy > 0) {
+                    //load more products asynchronously
                     if(!isLoading){
                         page++
                         loadBags(page)
                     }
-                    /*val visibleItemCount = mGridLayoutManager.childCount
-                    val totalItemCount = mGridLayoutManager.itemCount
-                    val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                        page++
-                        loadBags(page)
-                    }*/
                 }
+                if (recyclerView_bags.computeVerticalScrollOffset() > 1000) {
+                    action_bar.visibility = View.VISIBLE
+                } else action_bar.visibility = View.INVISIBLE
             }
         })
     }

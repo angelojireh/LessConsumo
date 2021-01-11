@@ -30,6 +30,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
     private var saleProductsPage = 1
     private var newProductsPage = 1
 
+    private var isSaleLoading = false
+    private var isNewLoading = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -65,6 +68,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
             R.id.textviewMen -> gotoNewActivity(MenActivity())
             R.id.textviewWomen -> gotoNewActivity(WomenActivity())
             R.id.textviewChild -> gotoNewActivity(ChildActivity())
+            R.id.action_bar -> recyclerView_saleProducts.smoothScrollToPosition(0)
+            R.id.action_bar2 -> recyclerView_newArrivals.smoothScrollToPosition(0)
         }
     }
 
@@ -87,6 +92,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         textviewMen.setOnClickListener(this)
         textviewWomen.setOnClickListener(this)
         textviewChild.setOnClickListener(this)
+        action_bar.setOnClickListener(this)
+        action_bar2.setOnClickListener(this)
     }
 
     private fun initSaleProductsAdapter() {
@@ -126,6 +133,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun loadNewArrivals(page: Int) {
         //load new arrivals
+        isNewLoading = true
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchNewProducts(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
@@ -135,11 +143,13 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
                 mNewProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
             progress_newProducts.visibility = View.GONE
+            isNewLoading = false
         })
     }
 
     private fun loadSaleProducts(page: Int) {
         // load sale products
+        isSaleLoading = true
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mHomeViewModel.fetchOnSaleProducts(page)
         mHomeViewModel.productModelListLiveData?.observe(this, Observer {
@@ -149,6 +159,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
                 mSaleProductsAdapter.setData(it as ArrayList<ProductModel>)
             }
             progress_saleProducts.visibility = View.GONE
+            isSaleLoading = false
         })
     }
 
@@ -156,14 +167,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         recyclerView_saleProducts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if(dy > 0) {
-                    val visibleItemCount = mGridLayoutManager.childCount
-                    val totalItemCount = mGridLayoutManager.itemCount
-                    val pastVisibleItems = mGridLayoutManager.findFirstVisibleItemPosition()
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                    if(!isSaleLoading) {
                         saleProductsPage++
                         loadSaleProducts(saleProductsPage)
                     }
                 }
+                if(recyclerView_saleProducts.computeVerticalScrollOffset() > 1000) {
+                    action_bar.visibility = View.VISIBLE
+                } else action_bar.visibility = View.INVISIBLE
             }
         })
     }
@@ -172,14 +183,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener{
         recyclerView_newArrivals.addOnScrollListener(object: RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if(dx > 0){
-                    val visibleItemCount = mLinearLayoutManager.childCount
-                    val totalItemCount = mLinearLayoutManager.itemCount
-                    val pastVisibleItems = mLinearLayoutManager.findFirstVisibleItemPosition()
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                    if(!isNewLoading) {
                         newProductsPage++
                         loadNewArrivals(newProductsPage)
                     }
                 }
+                if(recyclerView_newArrivals.computeHorizontalScrollOffset() > 1000) {
+                    action_bar2.visibility = View.VISIBLE
+                } else action_bar2.visibility = View.INVISIBLE
             }
         })
     }
